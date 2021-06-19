@@ -89,12 +89,28 @@
 
 }
 
+.dropdown-events-menu{
+    width: 130px;
+    height: 130px;
+    background-color: black;
+    z-index: 10000;
+}
+
 .dropdown-menu-userName, .dropdown-menu-email{
     padding-top: 10px;
     color: white;
     font-size: 15pt;
 }
 
+.dropdown-events-menu-genres, .dropdown-events-menu-date,.dropdown-events-menu-places{
+    padding-top: 10px;
+    color: white;
+    font-size: 15pt;
+}
+
+.dropdown-events-menu-genres:hover, .dropdown-events-menu-date:hover,.dropdown-events-menu-places:hover{
+    color:#E3C570;
+}
 
 .dropdown-menu-logOut{
     padding-top: 10px;
@@ -118,4 +134,10 @@
 .webName{
     color: white;
     font-size: 20pt;
+}
+
+.navEventsLinkDropDown{
+    position: fixed;
+    top: 80px;
+    left: 650px;
 }
