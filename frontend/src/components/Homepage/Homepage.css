@@ -77,12 +77,15 @@
 .genreBoard6{
     width: 640px;
     height:640px;
+    display: flex;
+    justify-content: center;
     position: absolute;
     top:230px;
     left: 500px;
     opacity: 0%;
     color: white;
     z-index: 100000;
+
 }
 
 .genreBoard6:hover{
@@ -107,6 +110,8 @@
     font-size: 25pt;
     z-index: 1;
 }
+
+
 .RectangleLeft{
     position: absolute;
     top:247px;
@@ -127,9 +132,10 @@
 .homepagePicMiddle{
     opacity: 100%;
     position: absolute;
-    top:670px;
+    top:693px;
     left: 1280px;
     transition:all 1s ease;
+
     /* width: 35rem;
     height: 30rem; */
 }

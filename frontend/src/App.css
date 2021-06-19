@@ -19,9 +19,10 @@ main {
     grid-area: main;
     overflow-x: hidden;
     overflow-y: scroll;
+    z-index: -1000;
 }
 
 footer {
     grid-area: footer;
-    z-index: 10000;
+    z-index: 10000000;
 }
