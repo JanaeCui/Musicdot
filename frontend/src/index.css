@@ -6,6 +6,5 @@ body{
     padding: 0;
     background-color: #E3C570;
     font-family: "Open Sans";
-    overflow-y: scroll;
-
+    height:100%;;
 }
