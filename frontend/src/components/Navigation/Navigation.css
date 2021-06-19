@@ -121,6 +121,10 @@
     background: none;
 }
 
+.dropdown-menu-logOut:hover{
+    color:#E3C570;
+}
+
 .fa.fa-user.fa-fw{
     color: white;
     font-size: 20pt;
