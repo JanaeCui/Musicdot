@@ -32,3 +32,7 @@
     color: white;
     font-size: 15px;
 }
+
+.fab.fa-twitter:hover, .fab.fa-vimeo:hover, .fab.fa-facebook-f:hover, .fab.fa-youtube:hover, .fab.fa-snapchat-ghost:hover{
+    color:#E3C570;
+}
