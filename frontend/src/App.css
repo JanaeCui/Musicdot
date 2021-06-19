@@ -16,7 +16,8 @@ header {
 
 main {
     grid-area: main;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 footer {

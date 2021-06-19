@@ -1,7 +1,34 @@
 .footer{
-    /* position: fixed; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 250px;
-    width: 130.8%;
+    width: 100%;
     background-color: black;
     margin-top: 1080px;
+
+}
+
+.footerWebName{
+    font-size: 50px;
+    color: white;
+}
+
+.fab.fa-twitter, .fab.fa-vimeo, .fab.fa-facebook-f, .fab.fa-youtube, .fab.fa-snapchat-ghost{
+    color: white;
+    font-size: 20pt;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.footerIcons{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerCopyRight{
+    color: white;
+    font-size: 15px;
 }
