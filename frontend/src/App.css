@@ -1,3 +1,25 @@
-.footer{
+.divContainer {
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+    overflow: auto;
+}
+
+footer {
+    grid-area: footer;
     z-index: 10000;
 }

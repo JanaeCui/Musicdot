@@ -5,8 +5,25 @@
     text-decoration: none;
     font-size: 20pt;
     color: white;
-    padding: 50px;
+    padding: 20px;
 }
+
+.navHomeLink:link, .navEventsLink:link, .navTicketsLink:link, .navMyEventsLink:link, .navBookmarksLink:link{
+    color: #E3C570;
+}
+
+/* .navHomeLink:visited, .navEventsLink:visited{
+    color: #E3C570;
+} */
+
+.navHomeLink:hover, .navEventsLink:hover,.navTicketsLink:hover, .navMyEventsLink:hover, .navBookmarksLink:hover, .fa.fa-user.fa-fw:hover,.fa.fa-caret-down:hover, .navSignUp:hover{
+    color: #E3C570 ;
+}
+
+.navHomeLink:active, .navEventsLink:active, .navTicketsLink:active, .navMyEventsLink:active, .navBookmarksLink:active, .fa.fa-user.fa-fw:active, .fa.fa-caret-down:active, .navSignUp:active{
+    color: #E3C570;
+}
+
 
 .navSignUp {
     text-decoration: none;
@@ -25,8 +42,8 @@
 
 .navBarContainer{
     height: 105px;
-    padding-left:70px;
-    padding-right: 70px;
+    padding-left:50px;
+    padding-right: 50px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,17 +59,19 @@
 .auth2{
     padding-right: 50px;
     padding-left: 50px;
-    position: absolute;
-    left: 1950px;
+    position: fixed;
+    left: 1380px;
     top: 35px;
+    z-index: 10000000;
 }
 
 .auth1{
     padding-right: 50px;
     padding-left: 50px;
-    position: absolute;
-    left: 2000px;
+    position: fixed;
+    left: 1450px;
     top: 35px;
+    z-index: 10000000;
 }
 
 .navSignUp{

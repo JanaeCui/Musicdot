@@ -6,5 +6,5 @@ body{
     padding: 0;
     background-color: #E3C570;
     font-family: "Open Sans";
-    height:100%;;
+    min-height: 100%;
 }

@@ -1,12 +1,12 @@
 .CD{
-    position: fixed;
-    top:110px;
+    position: absolute;
+    top:135px;
     left: -469px;
     /* width: 59rem;
     height: 59rem; */
 }
 .RectangleRight{
-    position: fixed;
+    position: absolute;
     top:180px;
     left: 1554px;
     /* width: 50rem;
@@ -15,7 +15,7 @@
 }
 
 .homepagePicRight{
-    position: fixed;
+    position: absolute;
     top:281px;
     left: 1611px;
     /* width: 50rem;
@@ -23,14 +23,14 @@
 }
 
 .RectangleLeft{
-    position: fixed;
+    position: absolute;
     top:247px;
     left: 809px;
     /* width: 50rem;
     height: 50rem; */
 }
 .homepagePicLeft{
-    position: fixed;
+    position: absolute;
     top:300px;
     left: 890px;
     /* width: 50rem;
@@ -38,7 +38,7 @@
 }
 
 .homepagePicMiddle{
-    position: fixed;
+    position: absolute;
     top:647px;
     left: 1280px;
     /* width: 35rem;

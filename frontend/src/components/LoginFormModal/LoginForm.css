@@ -10,6 +10,14 @@
     text-transform: uppercase;
 }
 
+.navLogInButton:hover{
+    color: #E3C570;
+}
+
+.navLogInButton:active{
+    color: #E3C570;
+}
+
 .btn.btn-primary{
     border: none;
     background: none;
