@@ -1,0 +1,46 @@
+.CD{
+    position: absolute;
+    top:129px;
+    left: -500px;
+    width: 70rem;
+    height: 70rem;
+}
+.RectangleRight{
+    position: absolute;
+    top:180px;
+    left: 1934px;
+    width: 50rem;
+    height: 50rem;
+    z-index: -1;
+}
+
+.homepagePicRight{
+    position: absolute;
+    top:281px;
+    left: 2000px;
+    width: 50rem;
+    height: 50rem;
+}
+
+.RectangleLeft{
+    position: absolute;
+    top:247px;
+    left: 1110px;
+    width: 50rem;
+    height: 50rem;
+}
+.homepagePicLeft{
+    position: absolute;
+    top:251px;
+    left: 1180px;
+    width: 50rem;
+    height: 50rem;
+}
+
+.homepagePicMiddle{
+    position: absolute;
+    top:647px;
+    left: 1580px;
+    width: 40rem;
+    height: 40rem;
+}

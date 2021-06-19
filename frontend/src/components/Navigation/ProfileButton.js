@@ -31,19 +31,44 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
-    </>
+    <div class="btn-group open">
+      <div className="profileButtons">
+        <button className="btn btn-primary" >
+          <i className="fa fa-user fa-fw" />
+        </button>
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          <span  onClick={openMenu} class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+        </a>
+      </div>
+      <div>
+        {showMenu && (
+          <ul className="dropdown-menu">
+            <div className="dropdown-menu-userName" >{user.username}</div>
+            <div className="dropdown-menu-email" >{user.email}</div>
+            <div>
+              <button className="dropdown-menu-logOut" onClick={logout}>Log Out</button>
+            </div>
+          </ul>
+        )}
+      </div>
+
+    </div>
+
+    {/* <i class="fa fa-user fa-fw"></i>
+    <a class="btn btn-primary dropdown-toggle"  href="#">
+      <span onClick={openMenu} class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+    </a>
+    {showMenu && (
+      <ul className="dropdown-menu">
+        <div className="dropdown-menu-userName">{user.username}</div>
+        <div className="dropdown-menu-email">{user.email}</div>
+        <div>
+          <button className="dropdown-menu-logOut" onClick={logout}>LOG OUT</button>
+        </div>
+      </ul>
+    )} */}
+
+  </>
   );
 }
 

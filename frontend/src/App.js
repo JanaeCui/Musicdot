@@ -5,7 +5,9 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-
+import Homepage from "./components/Homepage";
+import Footer from "./components/Footer";
+import "./App.css"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,14 +17,18 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation className="Navigation" isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Homepage />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }
