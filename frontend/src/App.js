@@ -17,6 +17,7 @@ function App() {
   }, [dispatch]);
 
   return (
+
     <>
       <div className="appContainer">
         <header>
@@ -39,6 +40,7 @@ function App() {
         </footer>
       </div>
     </>
+
   );
 }
 

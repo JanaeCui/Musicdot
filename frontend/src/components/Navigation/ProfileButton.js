@@ -31,13 +31,13 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <div class="btn-group open">
+    <div className="btn-group open">
       <div className="profileButtons">
         <button className="btn btn-primary" >
           <i className="fa fa-user fa-fw" />
         </button>
-        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-          <span  onClick={openMenu} class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+        <a className="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          <span  onClick={openMenu} className="fa fa-caret-down" title="Toggle dropdown menu"></span>
         </a>
       </div>
       <div>

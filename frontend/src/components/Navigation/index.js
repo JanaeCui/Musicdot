@@ -7,8 +7,10 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import logo from "../../images/logo.png"
+import {useHomepageAnimation} from "../../context/HomepageAnimationContext"
 
 function Navigation({ isLoaded }){
+  const {setActive} = useHomepageAnimation();
   const sessionUser = useSelector(state => state.session.user);
   const [showEventsMenu, setShowEventsMenu] = useState(false);
   let sessionLinks;
@@ -43,6 +45,16 @@ function Navigation({ isLoaded }){
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showEventsMenu]);
+
+  const addActive = ()=>{
+    setActive("genreBoard");
+    return;
+  }
+
+  const removeActive = ()=>{
+    setActive("");
+    return;
+  }
   return (
     <>
       <div className = "navBar">
@@ -50,7 +62,7 @@ function Navigation({ isLoaded }){
           <div className="webName">MUSIC DOT</div>
 
           <div className="navLinks">
-            <NavLink className ="navHomeLink" exact to="/">HOME</NavLink>
+            <NavLink className ="navHomeLink" onClick={removeActive} exact to="/">HOME</NavLink>
             <NavLink onClick={openEventsMenu} className ="navEventsLink" exact to="/">EVENTS</NavLink>
             <NavLink className ="navTicketsLink" exact to="/">TICKETS</NavLink>
             <NavLink className ="navMyEventsLink" exact to="/">My EVENTS</NavLink>
@@ -59,7 +71,7 @@ function Navigation({ isLoaded }){
           <div className="navEventsLinkDropDown">
             {showEventsMenu && (
               <ul className="dropdown-events-menu">
-                <div className="dropdown-events-menu-genres" ><a>GENRES</a></div>
+                <div className="dropdown-events-menu-genres" ><a onClick={addActive}>GENRES</a></div>
                 <div className="dropdown-events-menu-date" ><a>DATE</a></div>
                 <div>
                   <a className="dropdown-events-menu-places" >PLACES</a>

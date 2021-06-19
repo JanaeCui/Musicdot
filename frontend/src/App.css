@@ -12,6 +12,7 @@
 
 header {
     grid-area: header;
+    z-index: 10000000;
 }
 
 main {

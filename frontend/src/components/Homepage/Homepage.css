@@ -12,20 +12,106 @@
     /* width: 50rem;
     height: 50rem; */
     z-index: -1;
+    transition:all 1s ease;
 }
 
 .homepagePicRight{
     position: absolute;
     top:281px;
     left: 1611px;
+    transition:all 1s ease;
     /* width: 50rem;
     height: 50rem; */
 }
 
+#genreBoard2{
+
+    position: absolute;
+    top:281px;
+    left: 1611px;
+    transform: rotate(60deg);
+}
+
+#genreBoard1{
+
+    position: absolute;
+    top:230px;
+    left: 1500px;
+    transform: rotate(30deg);
+    z-index: -1000;
+}
+
+#genreBoard3{
+
+    position: absolute;
+    top:227px;
+    left: 759px;
+    transform: rotate(50deg);
+    z-index: -1000;
+}
+
+#genreBoard4{
+
+    position: absolute;
+    top:280px;
+    left: 750px;
+    transform: rotate(70deg);
+    z-index: -1000;
+}
+
+
+#genreBoard5{
+
+    opacity: 100%;
+    position: absolute;
+    top:230px;
+    left: 500px;
+    transform: rotate(0deg);
+    z-index: -1000;
+    width: 40rem;
+    height: 40rem;
+    background-color: rgba(0, 0, 0, 0.192);
+
+}
+
+.genreBoard6{
+    width: 640px;
+    height:640px;
+    position: absolute;
+    top:230px;
+    left: 500px;
+    opacity: 0%;
+    color: white;
+    z-index: 100000;
+}
+
+.genreBoard6:hover{
+    display: flex;
+    justify-content: center;
+    width: 640px;
+    height: 640px;
+    position: absolute;
+    top:230px;
+    left: 500px;
+    opacity: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.192);
+    z-index: 100000;
+}
+
+.text{
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    margin-top: 50%;
+    font-size: 25pt;
+    z-index: 1;
+}
 .RectangleLeft{
     position: absolute;
     top:247px;
     left: 809px;
+    transition:all 1s ease;
     /* width: 50rem;
     height: 50rem; */
 }
@@ -33,14 +119,17 @@
     position: absolute;
     top:300px;
     left: 890px;
+    transition:all 1s ease;
     /* width: 50rem;
     height: 50rem; */
 }
 
 .homepagePicMiddle{
+    opacity: 100%;
     position: absolute;
-    top:647px;
+    top:670px;
     left: 1280px;
+    transition:all 1s ease;
     /* width: 35rem;
     height: 30rem; */
 }
