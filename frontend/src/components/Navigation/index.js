@@ -51,6 +51,16 @@ function Navigation({ isLoaded }){
     return;
   }
 
+  const addActive2 = ()=>{
+    setActive("dateBoard");
+    return;
+  }
+
+  const addActive3 = ()=>{
+    setActive("placeBoard");
+    return;
+  }
+
   const removeActive = ()=>{
     setActive("");
     return;
@@ -72,9 +82,9 @@ function Navigation({ isLoaded }){
             {showEventsMenu && (
               <ul className="dropdown-events-menu">
                 <div className="dropdown-events-menu-genres" ><a onClick={addActive}>GENRES</a></div>
-                <div className="dropdown-events-menu-date" ><a>DATE</a></div>
+                <div className="dropdown-events-menu-date" ><a onClick={addActive2}>DATES</a></div>
                 <div>
-                  <a className="dropdown-events-menu-places" >PLACES</a>
+                  <a className="dropdown-events-menu-places" onClick={addActive3} >VENUS</a>
                 </div>
               </ul>
             )}

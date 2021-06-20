@@ -2,9 +2,35 @@
     position: absolute;
     top:135px;
     left: -469px;
+    transition:all 1s ease;
     /* width: 59rem;
     height: 59rem; */
 }
+
+#genreBoard0{
+
+    position: absolute;
+    top:135px;
+    left: -469px;
+    transform: rotate(360deg);
+}
+
+#dateBoard0{
+
+    position: absolute;
+    top:135px;
+    left: -469px;
+    transform: rotate(180deg);
+}
+
+#placeBoard0{
+
+    position: absolute;
+    top:135px;
+    left: -469px;
+    transform: rotate(-360deg);
+}
+
 .RectangleRight{
     position: absolute;
     top:180px;
@@ -102,13 +128,234 @@
     z-index: 100000;
 }
 
-.text{
+.genreBoardText{
+    opacity: 100%;
     text-decoration: none;
     color: white;
     justify-content: center;
     margin-top: 50%;
     font-size: 25pt;
     z-index: 1;
+}
+
+.dateBoardText{
+    opacity: 100%;
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    margin-top: 50%;
+    font-size: 25pt;
+    z-index: 1;
+}
+
+.placeBoardText{
+    opacity: 100%;
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    margin-top: 50%;
+    font-size: 25pt;
+    z-index: 1;
+}
+
+
+
+#dateBoard2{
+
+    position: absolute;
+    top:280px;
+    left: 1460px;
+    transform: rotate(68deg);
+}
+
+#dateBoard1{
+
+    position: absolute;
+    top:200px;
+    left: 1400px;
+    transform: rotate(20deg);
+    z-index: -1000;
+}
+
+#dateBoard3{
+
+    position: absolute;
+    top:327px;
+    left: 659px;
+    transform: rotate(90deg);
+    z-index: -1000;
+}
+
+#dateBoard4{
+
+    opacity: 100%;
+    position: absolute;
+    top:100px;
+    left: 400px;
+    transform: rotate(35deg);
+    z-index: -1000;
+    width:55rem;
+    height: 55rem;
+    z-index: 1000;
+    /* background-color: rgba(0, 0, 0, 0.192); */
+
+    /* position: absolute;
+    top:280px;
+    left: 750px;
+    transform: rotate(70deg);
+    z-index: -1000; */
+}
+
+
+#dateBoard5{
+
+    position: absolute;
+    top:590px;
+    left: 1050px;
+    transform: rotate(-60deg);
+    z-index: -1000;
+
+    /* opacity: 100%;
+    position: absolute;
+    top:230px;
+    left: 500px;
+    transform: rotate(0deg);
+    z-index: -1000;
+    width: 40rem;
+    height: 40rem;
+    background-color: rgba(0, 0, 0, 0.192); */
+
+}
+
+.dateBoard7{
+    width: 640px;
+    height:640px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top:225px;
+    left: 525px;
+    opacity: 0%;
+    color: white;
+    z-index: 1000000;
+
+}
+
+.dateBoard7:hover{
+    display: flex;
+    justify-content: center;
+    width: 630px;
+    height: 630px;
+    position: absolute;
+    top:225px;
+    left: 525px;
+    opacity: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.192);
+    z-index: 1000000;
+}
+
+#placeBoard2{
+
+    opacity: 100%;
+    position: absolute;
+    top:225px;
+    left: 525px;
+    transform: rotate(0deg);
+    z-index: -1000;
+    width:39.5rem;
+    height: 39.5rem;
+    z-index: 1000;
+
+
+    /* position: absolute;
+    top:280px;
+    left: 1460px;
+    transform: rotate(68deg); */
+}
+
+#placeBoard1{
+
+    position: absolute;
+    top:200px;
+    left: 1400px;
+    transform: rotate(0deg);
+    z-index: -1000;
+}
+
+#placeBoard3{
+
+    position: absolute;
+    top:177px;
+    left: 609px;
+    transform: rotate(90deg);
+    z-index: -1000;
+}
+
+#placeBoard4{
+
+    opacity: 100%;
+    position: absolute;
+    top:300px;
+    left: 1000px;
+    transform: rotate(60deg);
+    z-index: -1000;
+    /* background-color: rgba(0, 0, 0, 0.192); */
+
+    /* position: absolute;
+    top:280px;
+    left: 750px;
+    transform: rotate(70deg);
+    z-index: -1000; */
+}
+
+
+#placeBoard5{
+
+    position: absolute;
+    top:890px;
+    left: 1450px;
+    transform: rotate(10deg);
+    z-index: -1000;
+
+    /* opacity: 100%;
+    position: absolute;
+    top:230px;
+    left: 500px;
+    transform: rotate(0deg);
+    z-index: -1000;
+    width: 40rem;
+    height: 40rem;
+    background-color: rgba(0, 0, 0, 0.192); */
+
+}
+
+.placeBoard8{
+    width: 640px;
+    height:640px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top:225px;
+    left: 525px;
+    opacity: 0%;
+    color: white;
+    z-index: 1000000;
+
+}
+
+.placeBoard8:hover{
+    display: flex;
+    justify-content: center;
+    width: 630px;
+    height: 630px;
+    position: absolute;
+    top:225px;
+    left: 525px;
+    opacity: 100%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.192);
+    z-index: 1000000;
 }
 
 
@@ -132,7 +379,7 @@
 .homepagePicMiddle{
     opacity: 100%;
     position: absolute;
-    top:693px;
+    top:713px;
     left: 1280px;
     transition:all 1s ease;
 
