@@ -1,4 +1,4 @@
-.divContainer {
+/* .divContainer {
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr;
@@ -7,12 +7,12 @@
     "header"
     "main"
     "footer";
-}
+} */
 
 
 header {
     grid-area: header;
-    z-index: 10000000;
+    z-index: 300000000000000000;
 }
 
 main {

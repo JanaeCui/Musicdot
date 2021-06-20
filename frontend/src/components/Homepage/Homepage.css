@@ -252,7 +252,7 @@
     opacity: 100%;
     color: white;
     background-color: rgba(0, 0, 0, 0.192);
-    z-index: 1000000;
+    z-index: 1000000000000;
 }
 
 #placeBoard2{
