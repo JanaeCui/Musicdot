@@ -60,7 +60,7 @@
     padding-right: 50px;
     padding-left: 50px;
     position: fixed;
-    left: 1380px;
+    left: 78%;
     top: 35px;
     z-index: 10000000;
 }
@@ -69,7 +69,7 @@
     padding-right: 50px;
     padding-left: 50px;
     position: fixed;
-    left: 1450px;
+    left: 81%;
     top: 35px;
     z-index: 10000000;
 }
