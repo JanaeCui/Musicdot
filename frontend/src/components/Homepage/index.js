@@ -15,7 +15,7 @@ function Homepage() {
         <div className="homepageContainer">
             <img className= "CD" id={active + "0"} src={CD} alt="CD"/>
             <img className= "RectangleRight" id={active + "1"} src={RectangleRight} alt="RectangleRight"/>
-            <div className={active + "8"}><NavLink to="events/dates" className={active + "Text"}>Show Events By Venus</NavLink></div>
+            <div className={active + "8"}><NavLink to="events/venues" className={active + "Text"}>Show Events By Venues</NavLink></div>
             <img className= "homepagePicRight" id={active + "2"} src={homepagePicRight} alt="homepagePicRight"/>
             <img className= "RectangleLeft" id={active +"3"} src={RectangleLeft} alt="RectangleLeft"/>
             <div className={active + "7"}><NavLink to="events/dates" className={active + "Text"}>Show Events By Dates</NavLink></div>

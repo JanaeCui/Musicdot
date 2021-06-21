@@ -84,7 +84,7 @@ function Navigation({ isLoaded }){
                 <div className="dropdown-events-menu-genres" ><a onClick={addActive}>GENRES</a></div>
                 <div className="dropdown-events-menu-date" ><a onClick={addActive2}>DATES</a></div>
                 <div>
-                  <a className="dropdown-events-menu-places" onClick={addActive3} >VENUS</a>
+                  <a className="dropdown-events-menu-places" onClick={addActive3} >VENUES</a>
                 </div>
               </ul>
             )}
