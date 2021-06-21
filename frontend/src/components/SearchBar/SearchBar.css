@@ -1,0 +1,15 @@
+.eventsSearchBar{
+    background-color: #8AC5F4;
+    width: 590px;
+    height: 35px;
+    border: none;
+    border-radius: 30Px;
+    padding-left: 30px;
+    padding-right: 45px;
+}
+
+.fas.fa-search{
+    position: absolute;
+    left:1120px ;
+    color: white;
+}

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import Footer from "./components/Footer";
 import "./App.css";
+import EventGenrePage from "./components/EventGenrePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,11 +20,10 @@ function App() {
   return (
 
     <>
-      <div className="appContainer">
         <header>
           <Navigation className="Navigation" isLoaded={isLoaded} />
         </header>
-        <main>
+
           {isLoaded && (
             <Switch>
               <Route exact path="/">
@@ -32,13 +32,15 @@ function App() {
               <Route path="/signup">
                 <SignupFormPage />
               </Route>
+              <Route path="/events/genres">
+                <EventGenrePage />
+              </Route>
             </Switch>
           )}
-        </main>
+
         <footer>
-          <Footer  />
+          <Footer />
         </footer>
-      </div>
     </>
 
   );

@@ -91,7 +91,7 @@ function Navigation({ isLoaded }){
           </div>
           <div className="logoAndAuth">
 
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt="logo"/>
           </div>
         </div>
 

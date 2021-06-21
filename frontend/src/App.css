@@ -11,18 +11,15 @@
 
 
 header {
-    grid-area: header;
     z-index: 300000000000000000;
 }
 
 main {
-    grid-area: main;
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: -1000;
 }
 
 footer {
-    grid-area: footer;
     z-index: 10000000;
 }

@@ -1,0 +1,70 @@
+.eventCard{
+    width: 1046px;
+    height: 272px;
+    display: grid;
+    grid-template-columns: 452px 594px;
+    grid-template-areas:
+    " eventCardPic contentCard"
+    ;
+}
+
+.eventCardPic{
+    width: 452px;
+    height: 272px;
+    grid-area: eventCardPic;
+}
+
+.contentCard1{
+    grid-area: contentCard;
+    width: 594px;
+    height: 272px;
+    background-color: white;
+}
+
+.contentCard2{
+    grid-area: contentCard;
+    width: 594px;
+    height: 272px;
+    background-color: #8AC5F4;
+}
+
+.title{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.date{
+    color: #959292;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.price1{
+    color: #8AC5F4;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.price2{
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.capacity{
+    font-size:20px;
+    margin-bottom: 20px;
+}
+
+.far.fa-bookmark{
+    font-size: 20px;
+}
+
+.fas.fa-cart-plus{
+    font-size: 20px;
+    margin-left: 35px;
+}
+
+.content{
+    margin: 6% 12%;
+}
