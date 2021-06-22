@@ -48,6 +48,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+
 }
 
 
@@ -79,6 +80,8 @@
 }
 .navLinks{
     align-self: center;
+    justify-content: center;
+    margin-right: 12%;
 }
 
 .dropdown-menu{
@@ -138,10 +141,16 @@
 .webName{
     color: white;
     font-size: 20pt;
+    margin-right: 50px;
 }
 
 .navEventsLinkDropDown{
     position: fixed;
     top: 80px;
     left: 36%;
+}
+
+.webNameAndDemoUser{
+    display: flex;
+    align-items: center;
 }

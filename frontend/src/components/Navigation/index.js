@@ -8,6 +8,7 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import logo from "../../images/logo.png"
 import {useHomepageAnimation} from "../../context/HomepageAnimationContext"
+import DemoUser from "../DemoUser";
 
 function Navigation({ isLoaded }){
   const {setActive} = useHomepageAnimation();
@@ -69,8 +70,10 @@ function Navigation({ isLoaded }){
     <>
       <div className = "navBar">
         <div className = "navBarContainer">
-          <div className="webName">MUSIC DOT</div>
-
+          <div className="webNameAndDemoUser">
+            <div className="webName">MUSIC DOT</div>
+            <DemoUser />
+          </div>
           <div className="navLinks">
             <NavLink className ="navHomeLink" onClick={removeActive} exact to="/">HOME</NavLink>
             <NavLink onClick={openEventsMenu} className ="navEventsLink" exact to="/">EVENTS</NavLink>
