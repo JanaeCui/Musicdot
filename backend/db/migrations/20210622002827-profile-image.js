@@ -24,6 +24,6 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-   return queryInterface.removeColumn('Users', "profileImageUrl");
+    return queryInterface.removeColumn('Users', "profileImageUrl");
   }
 };
