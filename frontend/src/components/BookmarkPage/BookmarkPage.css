@@ -5,6 +5,7 @@
 
 .eventsCD{
     position: absolute;
+    top: 13%;
     left:75%;
 }
 
@@ -31,6 +32,7 @@
     margin-bottom: 50px;
     width:1046px;
     justify-content: space-between;
+    z-index: 10000;
 }
 
 

@@ -11,6 +11,8 @@ import "./App.css";
 import EventGenrePage from "./components/EventGenrePage";
 import EventVenuePage from "./components/EventVenuePage";
 import EventDatePage from "./components/EventDatePage";
+import BookmarkPage from "./components/BookmarkPage";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,6 +44,9 @@ function App() {
                 </Route>
                 <Route path="/events/dates">
                   <EventDatePage />
+                </Route>
+                <Route path="/bookmarks">
+                  <BookmarkPage />
                 </Route>
               </Switch>
             </main>

@@ -12,6 +12,7 @@ export const getBookmarks = () => async (dispatch) => {
     const res = await fetch('/api/bookmarks');
     const bookmarks = await res.json();
     dispatch(setBookmarks(bookmarks));
+    console.log("thunk bookmarks", bookmarks);
 };
 
 // Define an initial state

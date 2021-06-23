@@ -20,7 +20,6 @@ function EventVenuePage() {
     const dispatch = useDispatch();
     let events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
-    console.log(events);
 
     const dynamicSearch = ()=>{
         return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
