@@ -77,7 +77,7 @@ function EventVenuePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
                 {eventDateGroup()}
-                <div className="bottomSpace"></div>
+                {/* <div className="bottomSpace"></div> */}
             </div>
 
         </>

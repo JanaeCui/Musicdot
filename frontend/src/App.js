@@ -26,23 +26,25 @@ function App() {
         </header>
 
           {isLoaded && (
-            <Switch>
-              <Route exact path="/">
-                <Homepage />
-              </Route>
-              <Route path="/signup">
-                <SignupFormPage />
-              </Route>
-              <Route path="/events/genres">
-                <EventGenrePage />
-              </Route>
-              <Route path="/events/venues">
-                <EventVenuePage />
-              </Route>
-              <Route path="/events/dates">
-                <EventDatePage />
-              </Route>
-            </Switch>
+            <main>
+              <Switch>
+                <Route exact path="/">
+                  <Homepage />
+                </Route>
+                <Route path="/signup">
+                  <SignupFormPage />
+                </Route>
+                <Route path="/events/genres">
+                  <EventGenrePage />
+                </Route>
+                <Route path="/events/venues">
+                  <EventVenuePage />
+                </Route>
+                <Route path="/events/dates">
+                  <EventDatePage />
+                </Route>
+              </Switch>
+            </main>
           )}
 
         <footer>

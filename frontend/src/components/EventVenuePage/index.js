@@ -77,7 +77,7 @@ function EventVenuePage() {
                 {eventGenreGroup("Europe")}
                 {!searchTerm &&  venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
                 {eventGenreGroup("Africa")}
-                <div className="bottomSpace"></div>
+                {/* <div className="bottomSpace"></div> */}
             </div>
 
         </>
