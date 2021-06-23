@@ -1,5 +1,5 @@
 import React from 'react';
-import "./EventGenrePage.css"
+import "./EventVenuePage.css"
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import EventCard from '../EventCard';
 import CD from '../../images/CD.png'
@@ -11,12 +11,12 @@ import {Redirect} from "react-router-dom";
 
 import { getEvents } from '../../store/events';
 
-function EventGenrePage() {
+function EventVenuePage() {
 
     const dispatch = useDispatch();
     const events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
-    const categories = events.map(event => event.category);
+    const venues = events.map(event => event.Venue.name);
 
     useEffect(() => {
         if(sessionUser){
@@ -30,11 +30,11 @@ function EventGenrePage() {
 
 
 
-    const eventGenreGroup = (genre)=>{
+    const eventGenreGroup = (venue)=>{
 
             return events.map((event) =>{
 
-                if(event.category === genre){
+                if(event.Venue.name === venue){
                  return  <>
                              <EventCard event={event} className="eventCard" />
                          </>
@@ -54,24 +54,20 @@ function EventGenrePage() {
                 <img className= "eventsCD" src={CD} alt="CD"/>
                 <div className="eventTitleAndSearchBar">
                     <div className="eventGenreTitle">
-                        LIST BY GENRES
+                        LIST BY VENUES
                     </div>
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
-                {categories.includes("pop") && <div className="eventGenre">POP</div>}
-                {eventGenreGroup("pop")}
-                {categories.includes("rock") && <div className="eventGenre">ROCK</div>}
-                {eventGenreGroup("rock")}
-                {categories.includes("country") && <div className="eventGenre">COUNTRY</div>}
-                {eventGenreGroup("country")}
-                {categories.includes("hip hop") && <div className="eventGenre">HIP POP</div>}
-                {eventGenreGroup("hip hop")}
-                {categories.includes("jazz") && <div className="eventGenre">JAZZ</div>}
-                {eventGenreGroup("jazz")}
-                {categories.includes("funk") && <div className="eventGenre">FUNK</div>}
-                {eventGenreGroup("funk")}
-                {categories.includes("blues") && <div className="eventGenre">BLUES</div>}
-                {eventGenreGroup("blues")}
+                {venues.includes("America") && <div className="eventGenre">AMERICA</div>}
+                {eventGenreGroup("America")}
+                {venues.includes("Asia") && <div className="eventGenre">ASIA</div>}
+                {eventGenreGroup("Asia")}
+                {venues.includes("South America") && <div className="eventGenre">SOUTH AMERICA</div>}
+                {eventGenreGroup("South America")}
+                {venues.includes("Europe") && <div className="eventGenre">EUROPE</div>}
+                {eventGenreGroup("Europe")}
+                {venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
+                {eventGenreGroup("Africa")}
             </div>
 
         </>
@@ -80,4 +76,4 @@ function EventGenrePage() {
 
 }
 
-export default EventGenrePage;
+export default EventVenuePage;

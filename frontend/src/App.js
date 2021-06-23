@@ -9,7 +9,7 @@ import Homepage from "./components/Homepage";
 import Footer from "./components/Footer";
 import "./App.css";
 import EventGenrePage from "./components/EventGenrePage";
-
+import EventVenuePage from "./components/EventVenuePage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -34,6 +34,9 @@ function App() {
               </Route>
               <Route path="/events/genres">
                 <EventGenrePage />
+              </Route>
+              <Route path="/events/venues">
+                <EventVenuePage />
               </Route>
             </Switch>
           )}

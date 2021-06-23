@@ -16,21 +16,19 @@ function EventCard({event}) {
 
     useEffect(()=>{
         if(event.id % 2 === 0){
-            console.log(event.id);
             setContentCard("contentCard2")
         }else{
             setContentCard("contentCard1")
         }
-    },[])
+    },[event.id])
 
     useEffect(()=>{
         if(event.id % 2 === 0){
-            console.log(event.id);
             setPrice("price2")
         }else{
             setPrice("price1")
         }
-    },[])
+    },[event.id])
 
     const sessionUser = useSelector((state)=> state.session.user);
 
