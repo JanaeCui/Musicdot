@@ -8,9 +8,11 @@ import {Redirect} from "react-router-dom";
 import { format } from 'date-fns'
 import { enGB } from 'date-fns/locale'
 
+import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 
 function EventCard({event}) {
-    
+    const {bookmarkIconState} = useBookmarkIcon();
+
     const [contentCard, setContentCard] = useState("")
 
     const [price, setPrice] = useState("")
@@ -48,7 +50,7 @@ function EventCard({event}) {
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
                         <div className="iconsGroup" style={{display:"display"}}>
-                            <i className="far fa-bookmark" style={{display:"display"}}></i>
+                            <i className={bookmarkIconState} style={{display:"display"}}></i>
                             <i className="fas fa-cart-plus" style={{display:"display"}}></i>
                         </div>
                     </div>

@@ -14,6 +14,7 @@ import { getBookmarks } from '../../store/bookmarks';
 import { useSearchBar } from '../../context/SearchBarContext';
 
 function EventGenrePage() {
+
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
