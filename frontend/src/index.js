@@ -8,6 +8,7 @@ import App from "./App";
 import { ModalProvider } from "./context/Modal";
 import {HomepageAnimationProvider} from "./context/HomepageAnimationContext"
 import { SearchBarProvider } from "./context/SearchBarContext";
+import {BookmarkIconProvider} from "./context/BookmarkIconContext"
 
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";

@@ -23,26 +23,19 @@ const initialState = {};
 const eventsReducer = (state = initialState, action) => {
     switch (action.type) {
       case SET_EVENTS:
-        const allEvents = {};
-        // for(let event of action.events){
-        //     allEvents[event.id] = event;
-        // }
-        // for(let i = action.events.length-1; i > 0; i-- ){
-        //     let event = action.events[i];
-        //     allEvents[event.id] = event;
-        // }
-        action.events.forEach((event) => {
-          allEvents[event.id] = event;
-          console.log("event.id", event.id);
-          console.log("event", event);
-        });
-        console.log("action.events", action.events);
-        console.log("allEvents", allEvents);
-        return {
-          ...state,
-          ...allEvents,
-        //   list: action.events.map( e => e.id)
-        };
+        // const allEvents = {};
+        // action.events.forEach((event) => {
+        //   allEvents[event.id] = event;
+        //   console.log("event.id", event.id);
+        //   console.log("event", event);
+        // });
+        // console.log("action.events", action.events);
+        // console.log("allEvents", allEvents);
+        // return {
+        //   ...state,
+        //   ...allEvents,
+        // };
+        return action.events;
       default:
         return state;
     }

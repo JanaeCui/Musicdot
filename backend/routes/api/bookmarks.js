@@ -11,7 +11,7 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
             model: Event,
             include: [Image]
         }, User],
-        order: [['createdAt', 'DESC']]
+        order: [['updatedAt', 'DESC']]
         }
         );
 

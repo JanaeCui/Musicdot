@@ -22,15 +22,16 @@ const initialState = {};
 const bookmarksReducer = (state = initialState, action) => {
     switch (action.type) {
       case SET_BOOKMARKS:
-        const allBookmarks = {};
-        action.bookmarks.forEach((bookmark) => {
-          allBookmarks[bookmark.id] = bookmark;
-        });
+        // const allBookmarks = {};
+        // action.bookmarks.forEach((bookmark) => {
+        //   allBookmarks[bookmark.id] = bookmark;
+        // });
 
-        return {
-          ...state,
-          ...allBookmarks,
-        };
+        // return {
+        //   ...state,
+        //   ...allBookmarks,
+        // };
+        return action.bookmarks;
       default:
         return state;
     }

@@ -8,7 +8,7 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
 
     const events = await Event.findAll(
         {include: [Image,Venue],
-        order: [['createdAt', 'DESC']]
+        order: [['updatedAt', 'DESC']]
         }
         );
 
