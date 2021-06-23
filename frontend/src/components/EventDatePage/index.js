@@ -20,6 +20,7 @@ function EventVenuePage() {
     const dispatch = useDispatch();
     let events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
+    console.log(events);
 
     const dynamicSearch = ()=>{
         return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -32,14 +33,11 @@ function EventVenuePage() {
         let eventDate = new Date(event.date).getFullYear();
         if(yearMap[eventDate] === undefined){
             yearMap[eventDate] = [];
-            console.log("adding year " + eventDate)
         }
         yearMap[eventDate].push(event);
-        console.log("adding event")
-        console.log(yearMap[eventDate])
     }
-    console.log("Event count: " + events.length)
-    console.log(yearMap)
+
+
     useEffect(() => {
         if(sessionUser){
             dispatch(getEvents());
@@ -79,7 +77,7 @@ function EventVenuePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
                 {eventDateGroup()}
-                {searchTerm && <div className="bottomSpace"></div>}
+                <div className="bottomSpace"></div>
             </div>
 
         </>

@@ -81,7 +81,7 @@ function EventGenrePage() {
                 {eventGenreGroup("funk")}
                 {!searchTerm && categories.includes("blues") && <div className="eventGenre">BLUES</div>}
                 {eventGenreGroup("blues")}
-                {searchTerm && <div className="bottomSpace"></div>}
+                <div className="bottomSpace"></div>
             </div>
 
         </>
