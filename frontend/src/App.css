@@ -16,7 +16,7 @@ header {
 
 main {
     width: 120%;
-    min-height: 1280px;
+    min-height: 1100px;
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: -1000;
