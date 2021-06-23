@@ -11,12 +11,21 @@ import {Redirect} from "react-router-dom";
 
 import { getEvents } from '../../store/events';
 
+import { useSearchBar } from '../../context/SearchBarContext';
+
 function EventGenrePage() {
+    const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
-    const events = useSelector((state) => Object.values(state.events));
+    let events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
     const categories = events.map(event => event.category);
+
+    const dynamicSearch = ()=>{
+        return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    }
+
+    events = dynamicSearch();
 
     useEffect(() => {
         if(sessionUser){
@@ -58,20 +67,21 @@ function EventGenrePage() {
                     </div>
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
-                {categories.includes("pop") && <div className="eventGenre">POP</div>}
+                {!searchTerm && categories.includes("pop") && <div className="eventGenre">POP</div>}
                 {eventGenreGroup("pop")}
-                {categories.includes("rock") && <div className="eventGenre">ROCK</div>}
+                {!searchTerm && categories.includes("rock") && <div className="eventGenre">ROCK</div>}
                 {eventGenreGroup("rock")}
-                {categories.includes("country") && <div className="eventGenre">COUNTRY</div>}
+                {!searchTerm && categories.includes("country") && <div className="eventGenre">COUNTRY</div>}
                 {eventGenreGroup("country")}
-                {categories.includes("hip hop") && <div className="eventGenre">HIP POP</div>}
+                {!searchTerm && categories.includes("hip hop") && <div className="eventGenre">HIP POP</div>}
                 {eventGenreGroup("hip hop")}
-                {categories.includes("jazz") && <div className="eventGenre">JAZZ</div>}
+                {!searchTerm && categories.includes("jazz") && <div className="eventGenre">JAZZ</div>}
                 {eventGenreGroup("jazz")}
-                {categories.includes("funk") && <div className="eventGenre">FUNK</div>}
+                {!searchTerm && categories.includes("funk") && <div className="eventGenre">FUNK</div>}
                 {eventGenreGroup("funk")}
-                {categories.includes("blues") && <div className="eventGenre">BLUES</div>}
+                {!searchTerm && categories.includes("blues") && <div className="eventGenre">BLUES</div>}
                 {eventGenreGroup("blues")}
+                {searchTerm && <div className="bottomSpace"></div>}
             </div>
 
         </>

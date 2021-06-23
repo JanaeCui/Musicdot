@@ -10,6 +10,7 @@ import { enGB } from 'date-fns/locale'
 
 
 function EventCard({event}) {
+    
     const [contentCard, setContentCard] = useState("")
 
     const [price, setPrice] = useState("")

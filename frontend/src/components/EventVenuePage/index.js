@@ -11,12 +11,21 @@ import {Redirect} from "react-router-dom";
 
 import { getEvents } from '../../store/events';
 
+import { useSearchBar } from '../../context/SearchBarContext';
+
 function EventVenuePage() {
+    const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
-    const events = useSelector((state) => Object.values(state.events));
+    let events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
     const venues = events.map(event => event.Venue.name);
+
+    const dynamicSearch = ()=>{
+        return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    }
+
+    events = dynamicSearch();
 
     useEffect(() => {
         if(sessionUser){
@@ -58,16 +67,17 @@ function EventVenuePage() {
                     </div>
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
-                {venues.includes("America") && <div className="eventGenre">AMERICA</div>}
+                {!searchTerm &&  venues.includes("America") && <div className="eventGenre">AMERICA</div>}
                 {eventGenreGroup("America")}
-                {venues.includes("Asia") && <div className="eventGenre">ASIA</div>}
+                {!searchTerm &&  venues.includes("Asia") && <div className="eventGenre">ASIA</div>}
                 {eventGenreGroup("Asia")}
-                {venues.includes("South America") && <div className="eventGenre">SOUTH AMERICA</div>}
+                {!searchTerm &&  venues.includes("South America") && <div className="eventGenre">SOUTH AMERICA</div>}
                 {eventGenreGroup("South America")}
-                {venues.includes("Europe") && <div className="eventGenre">EUROPE</div>}
+                {!searchTerm &&  venues.includes("Europe") && <div className="eventGenre">EUROPE</div>}
                 {eventGenreGroup("Europe")}
-                {venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
+                {!searchTerm &&  venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
                 {eventGenreGroup("Africa")}
+                {searchTerm && <div className="bottomSpace"></div>}
             </div>
 
         </>

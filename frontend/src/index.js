@@ -7,10 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { ModalProvider } from "./context/Modal";
 import {HomepageAnimationProvider} from "./context/HomepageAnimationContext"
+import { SearchBarProvider } from "./context/SearchBarContext";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import './index.css'
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
@@ -25,11 +27,13 @@ function Root() {
   return (
     <Provider store={store}>
       <HomepageAnimationProvider>
-        <ModalProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ModalProvider>
+        <SearchBarProvider>
+          <ModalProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ModalProvider>
+        </SearchBarProvider>
       </HomepageAnimationProvider>
     </Provider>
   );

@@ -11,13 +11,21 @@ import {Redirect} from "react-router-dom";
 
 import { getEvents } from '../../store/events';
 
+import { useSearchBar } from '../../context/SearchBarContext';
+
 
 function EventVenuePage() {
+    const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
-    const events = useSelector((state) => Object.values(state.events));
+    let events = useSelector((state) => Object.values(state.events));
     const sessionUser = useSelector((state)=> state.session.user);
 
+    const dynamicSearch = ()=>{
+        return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    }
+
+    events = dynamicSearch();
 
     let yearMap = {};
     for(let event of events){
@@ -71,6 +79,7 @@ function EventVenuePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
                 {eventDateGroup()}
+                {searchTerm && <div className="bottomSpace"></div>}
             </div>
 
         </>
