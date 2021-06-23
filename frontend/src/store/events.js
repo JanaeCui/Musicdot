@@ -16,7 +16,7 @@ export const getEvents = () => async (dispatch) => {
 };
 
 // Define an initial state
-const initialState = {};
+const initialState = {list: []};
 
 // Define a reducer
 const eventsReducer = (state = initialState, action) => {
@@ -29,6 +29,7 @@ const eventsReducer = (state = initialState, action) => {
         return {
           ...state,
           ...allEvents,
+          list: action.events.map( e => e.id)
         };
       default:
         return state;

@@ -17,12 +17,12 @@ function EventVenuePage() {
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
-    let events = useSelector((state) => Object.values(state.events));
+    let events = useSelector((state) => state.events);
     const sessionUser = useSelector((state)=> state.session.user);
-    const venues = events.map(event => event.Venue.name);
+    const venues = Object.values(events).map(event =>{if(event.Venue){return event.Venue.name }} );
 
     const dynamicSearch = ()=>{
-        return events.filter(event=> event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        return Object.values(events).filter(event=> {if (event.title){return event.title.toLowerCase().includes(searchTerm.toLowerCase())}})
     }
 
     events = dynamicSearch();
@@ -33,6 +33,10 @@ function EventVenuePage() {
         }
       }, [dispatch, sessionUser]);
 
+    useEffect(()=>{
+        console.log("current events", events);
+    },[events])
+
     if(!sessionUser){
         return <Redirect to="/signup" />
     }
@@ -40,12 +44,12 @@ function EventVenuePage() {
 
 
     const eventGenreGroup = (venue)=>{
+            console.log("events", events);
+            return events.list.map((event) =>{
 
-            return events.map((event) =>{
-
-                if(event.Venue.name === venue){
+                if(events[event].Venue.name === venue){
                  return  <>
-                             <EventCard event={event} className="eventCard" />
+                             <EventCard event={events[event]} className="eventCard" />
                          </>
 
                  }
@@ -68,15 +72,15 @@ function EventVenuePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
                 {!searchTerm &&  venues.includes("America") && <div className="eventGenre">AMERICA</div>}
-                {eventGenreGroup("America")}
+                {events.length !== 0 && eventGenreGroup("America")}
                 {!searchTerm &&  venues.includes("Asia") && <div className="eventGenre">ASIA</div>}
-                {eventGenreGroup("Asia")}
+                {events.length !== 0 && eventGenreGroup("Asia")}
                 {!searchTerm &&  venues.includes("South America") && <div className="eventGenre">SOUTH AMERICA</div>}
-                {eventGenreGroup("South America")}
+                {events.length !== 0 && eventGenreGroup("South America")}
                 {!searchTerm &&  venues.includes("Europe") && <div className="eventGenre">EUROPE</div>}
-                {eventGenreGroup("Europe")}
+                {events.length !== 0 && eventGenreGroup("Europe")}
                 {!searchTerm &&  venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
-                {eventGenreGroup("Africa")}
+                {events.length !== 0 && eventGenreGroup("Africa")}
                 {searchTerm && <div className="bottomSpace"></div>}
             </div>
 
