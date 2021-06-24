@@ -12,24 +12,30 @@ import {Redirect} from "react-router-dom";
 import { getBookmarks } from '../../store/bookmarks';
 
 import { useSearchBar } from '../../context/SearchBarContext';
+import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 
 function EventGenrePage() {
 
+    const {setLiked, liked, bookmarkState} = useBookmarkIcon();
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
     let bookmarks = useSelector((state) => Object.values(state.bookmarks));
-    console.log("bookmarks", bookmarks);
+
     const sessionUser = useSelector((state)=> state.session.user);
 
     const dynamicSearch = ()=>{
-        return bookmarks.filter(bookmark=> bookmark.Event.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        return bookmarks.filter(bookmark=> {
+            // TODO: empty bookmark
+            return bookmark.Event && bookmark.Event.title.toLowerCase().includes(searchTerm.toLowerCase())
+        })
     }
 
     bookmarks = dynamicSearch();
 
     useEffect(() => {
         if(sessionUser){
+
             dispatch(getBookmarks());
         }
       }, [dispatch, sessionUser]);
@@ -43,9 +49,11 @@ function EventGenrePage() {
     const eventGenreGroup = ()=>{
 
             return bookmarks.map((bookmark) =>{
+                setLiked(bookmarkState);
 
                  return  <>
-                             <EventCard event={bookmark.Event} className="eventCard" />
+                             <EventCard event={bookmark.Event} bookmark ={bookmarks} className="eventCard" />
+
                          </>
              })
 

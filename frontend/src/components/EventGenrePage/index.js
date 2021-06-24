@@ -14,6 +14,7 @@ import { getEvents } from '../../store/events';
 import { useSearchBar } from '../../context/SearchBarContext';
 
 function EventGenrePage() {
+    
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();

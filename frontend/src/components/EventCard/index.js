@@ -2,16 +2,24 @@ import React,{useEffect, useState} from 'react';
 import "./EventCard.css"
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
-import {  useSelector } from 'react-redux';
-import {Redirect} from "react-router-dom";
+import {  useSelector,useDispatch, } from 'react-redux';
+import {Redirect, useHistory} from "react-router-dom";
 
 import { format } from 'date-fns'
 import { enGB } from 'date-fns/locale'
 
 import {useBookmarkIcon} from "../../context/BookmarkIconContext"
+import { addBookmarks } from '../../store/bookmarks';
 
-function EventCard({event}) {
-    const {bookmarkIconState} = useBookmarkIcon();
+function EventCard({event, bookmark}) {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { setBookmarkState} = useBookmarkIcon();
+
+
+    const [liked, setLiked] = useState(false);
+    localStorage.setItem('likedKey', liked);
+    const storageLiked = localStorage.getItem('likedKey');
 
     const [contentCard, setContentCard] = useState("")
 
@@ -33,7 +41,42 @@ function EventCard({event}) {
         }
     },[event.id])
 
+
+
+
     const sessionUser = useSelector((state)=> state.session.user);
+
+    // const createdBookmark={};
+    let bookmarkState;
+    const eventId = event.id;
+    const userId = sessionUser.id;
+    const handleBookmarkClick = async ()=>{
+        const payload = {
+            eventId,
+            userId
+        }
+        const createdBookmark = await dispatch(addBookmarks(payload, eventId));
+        console.log("createdBookmark", createdBookmark);
+        bookmarkState = createdBookmark.bookmarkState
+        console.log(bookmarkState);
+        // else{
+        //     setLiked(false);
+        // }
+        // if(createdBookmark) {
+        //     history.push(`/bookmarks`);
+        // }
+        // setLiked(createdBookmark.bookmarkState);
+    }
+
+
+    const toggle=()=>{
+
+        // setLiked(bookmarkState);
+        let localLiked = liked;
+        localLiked = !localLiked;
+        setLiked(localLiked)
+    }
+
 
     if(!sessionUser){
         return <Redirect to="/signup" />
@@ -49,8 +92,10 @@ function EventCard({event}) {
                         <div className="date">{format(new Date(event.date), 'dd MMM yyyy', { locale: enGB })}</div>
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
-                        <div className="iconsGroup" style={{display:"display"}}>
-                            <i className={bookmarkIconState} style={{display:"display"}}></i>
+                        <div className="iconsGroup" onClick={handleBookmarkClick}  style={{display:"display"}}>
+                            {liked === false ? (<i className="far fa-bookmark" onClick={toggle} style={{display:`display`}}></i>): (<i className="fas fa-bookmark" onClick={toggle} style={{display:`display`}}></i>)}
+                            {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
+                            <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
                             <i className="fas fa-cart-plus" style={{display:"display"}}></i>
                         </div>
                     </div>

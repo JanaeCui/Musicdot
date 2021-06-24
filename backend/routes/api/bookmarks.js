@@ -6,6 +6,7 @@ const { Event, User,Image, Bookmark} = require('../../db/models');
 
 router.get('/',requireAuth, asyncHandler(async (req, res) => {
 
+
     const bookmarks = await Bookmark.findAll(
         {include: [{
             model: Event,
@@ -16,6 +17,16 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
         );
 
     return res.json(bookmarks);
-  }));
+}));
+
+router.post('/',requireAuth, asyncHandler(async function(req, res) {
+
+
+     const bookmark = await Bookmark.create(req.body);
+
+     return res.json(bookmark)
+    // res.redirect(`/bookmarks`);
+})
+);
 
 module.exports = router;

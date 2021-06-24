@@ -1,3 +1,4 @@
+import {csrfFetch} from "./csrf";
 // Define Action Types as Constants
 const SET_EVENTS = 'events/SET_EVENTS';
 
@@ -9,15 +10,25 @@ const setEvents = (events) => ({
 
 // Define Thunk Creators
 export const getEvents = () => async (dispatch) => {
-    const res = await fetch('/api/events');
+    const res = await csrfFetch('/api/events');
     const events = await res.json();
     dispatch(setEvents(events));
-    console.log("thunk", events);
     // return events;
 };
 
+
+
 // Define an initial state
-const initialState = {};
+const initialState = {
+    // list: [],
+    // types: []
+};
+
+// const sortList = (list) => {
+//     return list.sort((bookmarkA, bookmarkB) => {
+//       return bookmarkA.no - bookmarkB.no;
+//     }).map((bookmark) => bookmark.id);
+//   };
 
 // Define a reducer
 const eventsReducer = (state = initialState, action) => {
@@ -34,6 +45,7 @@ const eventsReducer = (state = initialState, action) => {
         // return {
         //   ...state,
         //   ...allEvents,
+        //   list: sortList(action.list),
         // };
         return action.events;
       default:

@@ -7,13 +7,22 @@ export const useBookmarkIcon = () => {return useContext(BookmarkIconContext);};
 
 export function BookmarkIconProvider({ children }) {
 
-    const [bookmarkIconState, setBookmarkIconState] = useState("far fa-bookmark");
+    const [bookmarkDisplay1, setBookmarkDisplay1] = useState("display");
+    const [bookmarkEvent, setBookmarkEvent] = useState()
+    const [liked, setLiked] = useState(false)
+    const [bookmarkState, setBookmarkState] = useState()
+
+
 
     return (
       <BookmarkIconContext.Provider
         value={{
-          bookmarkIconState,
-          setBookmarkIconState
+            liked,
+            setLiked,
+            bookmarkDisplay1,
+            setBookmarkDisplay1,
+            bookmarkEvent,
+            setBookmarkEvent
         }}
       >
         {children}
