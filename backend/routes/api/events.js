@@ -22,6 +22,10 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
     console.log("--------",loggedUserId);
     let bookmarkState = false
 
+
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem("savedBookmarkState", true);
+    // }
     const currentBookmark = await Bookmark.findOne({
       where: {
           eventId,
@@ -39,6 +43,7 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
         // res.locals.bookmarkId = true
         await newBookmark.save()
     // }
+
 
     res.json({currentBookmark, bookmarkState})
 })

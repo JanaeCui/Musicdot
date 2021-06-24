@@ -24,6 +24,8 @@ function EventCard({event, bookmark}) {
     const [contentCard, setContentCard] = useState("")
 
     const [price, setPrice] = useState("")
+    const [bookmarkClassName, setBookmarkClassName] = useState("")
+    const [savedBookmarkState,setSavedBookmarkState ] = useState();
 
     useEffect(()=>{
         if(event.id % 2 === 0){
@@ -47,7 +49,7 @@ function EventCard({event, bookmark}) {
     const sessionUser = useSelector((state)=> state.session.user);
 
     // const createdBookmark={};
-    let bookmarkState;
+
     const eventId = event.id;
     const userId = sessionUser.id;
     const handleBookmarkClick = async ()=>{
@@ -57,25 +59,28 @@ function EventCard({event, bookmark}) {
         }
         const createdBookmark = await dispatch(addBookmarks(payload, eventId));
         console.log("createdBookmark", createdBookmark);
-        bookmarkState = createdBookmark.bookmarkState
-        console.log(bookmarkState);
-        // else{
-        //     setLiked(false);
-        // }
-        // if(createdBookmark) {
-        //     history.push(`/bookmarks`);
-        // }
-        // setLiked(createdBookmark.bookmarkState);
+
+        if(createdBookmark.bookmarkState){
+            setBookmarkClassName(true)
+
+        }
+        if (typeof window !== 'undefined') {
+            localStorage.setItem("savedBookmarkState", true);
+        }
     }
+    useEffect(()=>{
+        setSavedBookmarkState (typeof window !== 'undefined' ? localStorage.getItem('savedBookmarkState') : null)
+    },[])
 
+    // console.log("savedBookmarkState",savedBookmarkState);
 
-    const toggle=()=>{
+    // const toggle=()=>{
 
-        // setLiked(bookmarkState);
-        let localLiked = liked;
-        localLiked = !localLiked;
-        setLiked(localLiked)
-    }
+    //     // setLiked(bookmarkState);
+    //     let localLiked = liked;
+    //     localLiked = !localLiked;
+    //     setLiked(localLiked)
+    // }
 
 
     if(!sessionUser){
@@ -93,7 +98,7 @@ function EventCard({event, bookmark}) {
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
                         <div className="iconsGroup" onClick={handleBookmarkClick}  style={{display:"display"}}>
-                            {liked === false ? (<i className="far fa-bookmark" onClick={toggle} style={{display:`display`}}></i>): (<i className="fas fa-bookmark" onClick={toggle} style={{display:`display`}}></i>)}
+                            <i className={bookmarkClassName === true || savedBookmarkState === true ? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
                             {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
                             <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
                             <i className="fas fa-cart-plus" style={{display:"display"}}></i>
