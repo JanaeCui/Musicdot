@@ -14,7 +14,7 @@ import { getEvents } from '../../store/events';
 import { useSearchBar } from '../../context/SearchBarContext';
 
 
-function EventVenuePage() {
+function EventDatePage() {
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
@@ -85,4 +85,4 @@ function EventVenuePage() {
 
 }
 
-export default EventVenuePage;
+export default EventDatePage;

@@ -39,7 +39,7 @@ function EventVenuePage() {
 
 
 
-    const eventGenreGroup = (venue)=>{
+    const eventVenueGroup = (venue)=>{
 
             return events.map((event) =>{
 
@@ -68,15 +68,15 @@ function EventVenuePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
                 {!searchTerm &&  venues.includes("America") && <div className="eventGenre">AMERICA</div>}
-                {eventGenreGroup("America")}
+                {eventVenueGroup("America")}
                 {!searchTerm &&  venues.includes("Asia") && <div className="eventGenre">ASIA</div>}
-                {eventGenreGroup("Asia")}
+                {eventVenueGroup("Asia")}
                 {!searchTerm &&  venues.includes("South America") && <div className="eventGenre">SOUTH AMERICA</div>}
-                {eventGenreGroup("South America")}
+                {eventVenueGroup("South America")}
                 {!searchTerm &&  venues.includes("Europe") && <div className="eventGenre">EUROPE</div>}
-                {eventGenreGroup("Europe")}
+                {eventVenueGroup("Europe")}
                 {!searchTerm &&  venues.includes("Africa") && <div className="eventGenre">AFRICA</div>}
-                {eventGenreGroup("Africa")}
+                {eventVenueGroup("Africa")}
                 {/* <div className="bottomSpace"></div> */}
             </div>
 
