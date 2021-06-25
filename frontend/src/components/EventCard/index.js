@@ -11,6 +11,8 @@ import { enGB } from 'date-fns/locale'
 import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 import { addBookmarks } from '../../store/bookmarks';
 
+import {csrfFetch} from "../../store/csrf";
+
 function EventCard({event, bookmark}) {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -26,6 +28,10 @@ function EventCard({event, bookmark}) {
     const [price, setPrice] = useState("")
     const [bookmarkClassName, setBookmarkClassName] = useState("")
     const [savedBookmarkState,setSavedBookmarkState ] = useState();
+
+
+
+
 
     useEffect(()=>{
         if(event.id % 2 === 0){
@@ -49,9 +55,9 @@ function EventCard({event, bookmark}) {
     const sessionUser = useSelector((state)=> state.session.user);
 
     // const createdBookmark={};
-
     const eventId = event.id;
     const userId = sessionUser.id;
+
     const handleBookmarkClick = async ()=>{
         const payload = {
             eventId,
@@ -82,6 +88,21 @@ function EventCard({event, bookmark}) {
     //     setLiked(localLiked)
     // }
 
+
+    useEffect(async()=>{
+
+        const response = await csrfFetch(`/api/bookmarks/isBookmarked`,{
+         method: 'POST',
+             headers:{
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({userId, eventId})
+        });
+        if(response.ok){
+            const isBookmarked = await response.json();
+            setSavedBookmarkState(isBookmarked);
+        }
+     }, [])
 
     if(!sessionUser){
         return <Redirect to="/signup" />
