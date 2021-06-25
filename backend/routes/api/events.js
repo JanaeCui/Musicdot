@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { requireAuth } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
-const { Event, Image, Venue, Bookmark} = require('../../db/models');
+const { Event, Image, Venue, Bookmark, Ticket} = require('../../db/models');
 
 router.get('/',requireAuth, asyncHandler(async (req, res) => {
 
@@ -86,5 +86,77 @@ router.delete('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res
     res.json({currentBookmark, bookmarkState})
 })
 );
+
+
+router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
+
+    const eventId = parseInt(req.params.id, 10);
+    const loggedUserId = req.body.userId;
+    console.log("--------",loggedUserId);
+    let ticketState = false
+
+    let count = 1;
+    const currentTicket = await Ticket.findOne({
+      where: {
+          eventId,
+          userId: loggedUserId
+      }
+    })
+
+    // if(!currentTicket) {
+        const newTicket = await Ticket.build({
+            userId: loggedUserId,
+            eventId
+        })
+
+        ticketState = true
+        await newTicket.save()
+    // }
+
+    if (typeof window !== 'undefined') {
+        localStorage.setItem("savedTicketState", false);
+        localStorage.setItem("counter", count++);
+    }
+
+    res.json({count, currentTicket, ticketState})
+})
+);
+
+router.delete('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
+
+    const eventId = parseInt(req.params.id, 10);
+    const userId = req.body.userId;
+    // console.log("--------",loggedUserId);
+    let ticketState = false
+
+
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem("savedBookmarkState", true);
+    // }
+    const currentTicket = await Ticket.findOne({
+      where: {
+          eventId,
+          userId: userId
+      }
+    })
+
+    if(currentTicket) {
+        const newTicket = await Ticket.destroy({
+            where: { id: currentTicket.id}
+        })
+        // const newTicket = await Ticket.create(req.body);
+        ticketState = false
+        // res.locals.ticketId = true
+    }
+
+    if (typeof window !== 'undefined') {
+        localStorage.setItem("savedTicketState", true);
+    }
+
+    res.json({currentTicket, ticketState})
+})
+);
+
+
 
 module.exports = router;

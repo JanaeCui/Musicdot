@@ -8,27 +8,25 @@ import {Redirect, useHistory} from "react-router-dom";
 import { format } from 'date-fns'
 import { enGB } from 'date-fns/locale'
 
-import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 import { addBookmarks } from '../../store/bookmarks';
+import { addTickets } from "../../store/tickets";
 import {deleteBookmarks} from "../../store/bookmarks";
+import {deleteTickets} from "../../store/tickets"
 
 import {csrfFetch} from "../../store/csrf";
 
-function EventCard({event, bookmark}) {
+function EventCard({event, displayPlusCart, displaySolidCart, bookmark}) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { setBookmarkState} = useBookmarkIcon();
-
-
-    // const [liked, setLiked] = useState(false);
-    // localStorage.setItem('likedKey', liked);
-    // const storageLiked = localStorage.getItem('likedKey');
 
     const [contentCard, setContentCard] = useState("")
 
     const [price, setPrice] = useState("")
-    const [bookmarkClassName, setBookmarkClassName] = useState("")
     const [savedBookmarkState,setSavedBookmarkState ] = useState(true);
+    const [savedTicketState, setSavedTicketState] = useState(true);
+    const [display1, setDisplay1] = useState("display");
+    const [display2, setDisplay2] = useState("none");
+    let [counter, setCounter]=useState(0);
 
 
 
@@ -50,6 +48,8 @@ function EventCard({event, bookmark}) {
     },[event.id])
 
 
+//--------------------------------------------------------------------------------------
+//--------------------------------------bookmarks click handler-----------------------------------------
 
 
     const sessionUser = useSelector((state)=> state.session.user);
@@ -57,14 +57,6 @@ function EventCard({event, bookmark}) {
     // const createdBookmark={};
     const eventId = event.id;
     const userId = sessionUser.id;
-
-    let  [,setState]=useState();
-    function handleUpdate() {
-        //passing empty object will re-render the component
-        setState({});
-    }
-
-
 
 
     const handleBookmarkClick = async ()=>{
@@ -122,17 +114,6 @@ function EventCard({event, bookmark}) {
         setSavedBookmarkState (typeof window !== 'undefined' ? localStorage.getItem('savedBookmarkState') : null)
     },[])
 
-    // console.log("savedBookmarkState",savedBookmarkState);
-
-    // const toggle=()=>{
-
-    //     // setLiked(bookmarkState);
-    //     let localLiked = liked;
-    //     localLiked = !localLiked;
-    //     setLiked(localLiked)
-    // }
-
-
     useEffect(async()=>{
 
         const response = await csrfFetch(`/api/bookmarks/isBookmarked`,{
@@ -150,14 +131,111 @@ function EventCard({event, bookmark}) {
         }
      }, [savedBookmarkState])
 
+//--------------------------------------------------------------------------------------
+//--------------------------------------tickets click handler-----------------------------------------
+
+
+const handleTicketClick = async ()=>{
+
+    const payload = {
+        eventId,
+        userId
+    }
+    const createdTicket = await dispatch(addTickets(payload, eventId));
+    console.log("createdTicket.count", createdTicket.count);
+
+        let counter1 = counter +1
+        console.log(counter1);
+        setSavedTicketState(true)
+        setCounter(counter1)
+
+        // if (typeof window !== 'undefined') {
+        //     localStorage.setItem("counter", counter++);
+        // }
+
+        // setCounter (typeof window !== 'undefined' ? localStorage.getItem('counter') : null)
+    console.log("counter", counter);
+
+    console.log("handleTicketClick", savedTicketState);
+}
+
+
+
+
+
+console.log("outside counter", counter);
+
+const handleTicketDelete = async ()=>{
+
+
+    let counter2 = counter -1
+
+    console.log("ticket count: " + counter);
+    if(counter > 0){
+
+
+        const deleteTicket= await dispatch(deleteTickets(eventId, userId));
+        setCounter(counter2)
+        setSavedTicketState(false)
+    }
+    console.log("deleted2");
+}
+
+
+
+// const toggle2 =()=>{
+
+//     if( savedTicketState === false ){
+//         handleTicketClick();
+//     }else if (savedTicketState === true){
+//         handleTicketDelete();
+//     }
+
+// }
+
+
+useEffect(()=>{
+    console.log("status");
+    setSavedTicketState (typeof window !== 'undefined' ? localStorage.getItem('savedTicketState') : null)
+},[])
+
+useEffect(async()=>{
+
+    const response = await csrfFetch(`/api/tickets/isTicketed`,{
+     method: 'POST',
+         headers:{
+             'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({userId, eventId})
+    });
+    if(response.ok){
+        // const {isTicketed}= await response.json();
+        const counter = await response.json();
+        setCounter(counter);
+        // console.log("isTicketed", isTicketed);
+        // setSavedTicketState(isTicketed);
+        console.log("savedTicketState",savedTicketState);
+    }
+ }, [])
+
+
+console.log("-----final savedTicketState", savedTicketState);
+
 
     if(!sessionUser){
         return <Redirect to="/signup" />
     }
 
+    
+    let displayStyle = "eventCard";
+
+    if (displaySolidCart && counter < 1) {
+        displayStyle = "eventCard2"
+    }
+
     return(
         <>
-            <div className="eventCard">
+            <div className={displayStyle} >
                 <img className= "eventCardPic" src={event.Image.eventImageUrl} alt="eventCardPic" />
                 <div className={contentCard}>
                     <div className="content">
@@ -170,7 +248,12 @@ function EventCard({event, bookmark}) {
                             <i onClick={toggle} className={savedBookmarkState === true? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
                             {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
                             <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
-                            <i className="fas fa-cart-plus" style={{display:"display"}}></i>
+                            {/* <i className="fas fa-cart-plus" style={{display:"display"}}></i> */}
+                            <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: displaySolidCart ? 'display' : 'none' }}><span className="counterNumber">{counter}</span></i>
+                            {/* <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: displaySolidCart ? 'display' : 'none' }}></i> */}
+                            <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}><span className="counterNumber">{counter}</span></i>
+                            {/* <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}></i> */}
+                            {/* <div>{counter}</div> */}
                         </div>
                     </div>
                 </div>

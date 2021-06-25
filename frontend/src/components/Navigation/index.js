@@ -77,8 +77,8 @@ function Navigation({ isLoaded }){
           <div className="navLinks">
             <NavLink className ="navHomeLink" onClick={removeActive} exact to="/">HOME</NavLink>
             <NavLink onClick={openEventsMenu} className ="navEventsLink" exact to="/">EVENTS</NavLink>
-            <NavLink className ="navTicketsLink" exact to="/">TICKETS</NavLink>
-            <NavLink className ="navMyEventsLink" exact to="/">My EVENTS</NavLink>
+            <NavLink className ="navTicketsLink" exact to="/tickets">TICKETS</NavLink>
+            <NavLink className ="navMyEventsLink" exact to="/myEvents">My EVENTS</NavLink>
             <NavLink className ="navBookmarksLink" exact to="/bookmarks">BOOKMARKS</NavLink>
           </div>
           <div className="navEventsLinkDropDown">

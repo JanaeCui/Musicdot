@@ -4,6 +4,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const eventsRouter = require("./events.js");
 const bookmarksRouter = require("./bookmarks.js")
+const ticketsRouter = require("./tickets.js")
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });
@@ -16,6 +17,8 @@ router.use('/users', usersRouter);
 router.use('/events', eventsRouter);
 
 router.use('/bookmarks', bookmarksRouter);
+
+router.use('/tickets', ticketsRouter);
 
 
 

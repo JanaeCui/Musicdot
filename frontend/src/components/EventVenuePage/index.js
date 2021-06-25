@@ -45,7 +45,7 @@ function EventVenuePage() {
 
                 if(event.Venue.name === venue){
                  return  <>
-                             <EventCard event={event} className="eventCard" />
+                             <EventCard event={event}  displayPlusCart={false} className="eventCard" />
                          </>
 
                  }

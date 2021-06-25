@@ -60,11 +60,23 @@
     font-size: 20px;
 }
 
-.fas.fa-cart-plus{
+.fas.fa-cart-plus, .fas.fa-shopping-cart{
     font-size: 20px;
     margin-left: 35px;
 }
 
+/* .fas.fa-cart-plus:hover{
+    color:#E3C570;
+} */
+
 .content{
     margin: 6% 12%;
+}
+
+.counterNumber{
+    margin-left: 15px;
+    font-family: "Open Sans";
+}
+.eventCard2{
+    display:none;
 }

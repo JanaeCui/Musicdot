@@ -12,11 +12,9 @@ import {Redirect} from "react-router-dom";
 import { getBookmarks } from '../../store/bookmarks';
 
 import { useSearchBar } from '../../context/SearchBarContext';
-import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 
 function BookmarkPage() {
 
-    const {setLiked, liked, bookmarkState} = useBookmarkIcon();
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
@@ -51,7 +49,7 @@ function BookmarkPage() {
             return bookmarks.map((bookmark) =>{
 
                  return  <>
-                             <EventCard event={bookmark.Event} bookmark ={bookmarks} className="eventCard" />
+                             <EventCard event={bookmark.Event} bookmark ={bookmarks} displayPlusCart={false} className="eventCard" />
 
                          </>
              })

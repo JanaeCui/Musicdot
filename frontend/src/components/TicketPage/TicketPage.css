@@ -1,0 +1,42 @@
+.eventGenreOuterDiv{
+    margin-top: 12%;
+    margin-left: 6%;
+}
+
+.eventsCD{
+    position: absolute;
+    top: 13%;
+    left:75%;
+}
+
+.eventGenreTitle{
+    font-size: 50px;
+
+}
+
+.eventGenre{
+    font-size: 40px;
+    color: white;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+.eventCard{
+    margin-bottom: 50px;
+}
+
+.eventTitleAndSearchBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+    width:1046px;
+    justify-content: space-between;
+    z-index: 10000;
+}
+
+
+.bottomSpace{
+    width: 100%;
+    height: 900px;
+}

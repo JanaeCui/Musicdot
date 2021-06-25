@@ -14,7 +14,7 @@ import { getEvents } from '../../store/events';
 import { useSearchBar } from '../../context/SearchBarContext';
 
 function EventGenrePage() {
-    
+
     const {searchTerm} = useSearchBar();
 
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ function EventGenrePage() {
 
                 if(event.category === genre){
                  return  <>
-                             <EventCard event={event} className="eventCard" />
+                             <EventCard event={event} displayPlusCart={false} className="eventCard" />
                          </>
 
                  }
