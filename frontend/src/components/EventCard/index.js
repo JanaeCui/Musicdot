@@ -165,9 +165,9 @@ function EventCard({event, bookmark}) {
                         <div className="date">{format(new Date(event.date), 'dd MMM yyyy', { locale: enGB })}</div>
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
-                        <div className="iconsGroup" onClick={toggle}  style={{display:"display"}}>
+                        <div className="iconsGroup"  style={{display:"display"}}>
 
-                            <i className={savedBookmarkState === true? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
+                            <i onClick={toggle} className={savedBookmarkState === true? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
                             {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
                             <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
                             <i className="fas fa-cart-plus" style={{display:"display"}}></i>

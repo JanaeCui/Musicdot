@@ -36,7 +36,7 @@ function BookmarkPage() {
     useEffect(() => {
         if(sessionUser){
 
-            dispatch(getBookmarks());
+            dispatch(getBookmarks(sessionUser.id));
         }
       }, [dispatch, sessionUser]);
 

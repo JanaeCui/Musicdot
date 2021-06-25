@@ -22,8 +22,8 @@ const removeBookmarks = (bookmarks) => ({
 })
 
 // Define Thunk Creators
-export const getBookmarks = () => async (dispatch) => {
-    const res = await csrfFetch('/api/bookmarks');
+export const getBookmarks = (userId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/bookmarks/${userId}`);
     const bookmarks = await res.json();
     dispatch(setBookmarks(bookmarks));
 };

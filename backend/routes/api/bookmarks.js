@@ -4,30 +4,32 @@ const { requireAuth } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
 const { Event, User,Image, Bookmark} = require('../../db/models');
 
-router.get('/',requireAuth, asyncHandler(async (req, res) => {
+router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
 
+    const userId = parseInt(req.params.id, 10);
 
     const bookmarks = await Bookmark.findAll(
         {include: [{
             model: Event,
             include: [Image]
         }, User],
-        order: [['updatedAt', 'DESC']]
+        order: [['updatedAt', 'DESC']],
+        where: {userId}
         }
         );
 
     return res.json(bookmarks);
 }));
 
-router.post('/',requireAuth, asyncHandler(async function(req, res) {
+// router.post('/',requireAuth, asyncHandler(async function(req, res) {
 
 
-     const bookmark = await Bookmark.create(req.body);
+//      const bookmark = await Bookmark.create(req.body);
 
-     return res.json(bookmark)
-    // res.redirect(`/bookmarks`);
-    })
-);
+//      return res.json(bookmark)
+//     // res.redirect(`/bookmarks`);
+//     })
+// );
 
 
 router.post('/isBookmarked', requireAuth, asyncHandler(async function(req, res) {
