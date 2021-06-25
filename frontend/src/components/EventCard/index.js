@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState, useReducer} from 'react';
 import "./EventCard.css"
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
@@ -10,6 +10,7 @@ import { enGB } from 'date-fns/locale'
 
 import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 import { addBookmarks } from '../../store/bookmarks';
+import {deleteBookmarks} from "../../store/bookmarks";
 
 import {csrfFetch} from "../../store/csrf";
 
@@ -19,16 +20,15 @@ function EventCard({event, bookmark}) {
     const { setBookmarkState} = useBookmarkIcon();
 
 
-    const [liked, setLiked] = useState(false);
-    localStorage.setItem('likedKey', liked);
-    const storageLiked = localStorage.getItem('likedKey');
+    // const [liked, setLiked] = useState(false);
+    // localStorage.setItem('likedKey', liked);
+    // const storageLiked = localStorage.getItem('likedKey');
 
     const [contentCard, setContentCard] = useState("")
 
     const [price, setPrice] = useState("")
     const [bookmarkClassName, setBookmarkClassName] = useState("")
-    const [savedBookmarkState,setSavedBookmarkState ] = useState();
-
+    const [savedBookmarkState,setSavedBookmarkState ] = useState(true);
 
 
 
@@ -58,7 +58,17 @@ function EventCard({event, bookmark}) {
     const eventId = event.id;
     const userId = sessionUser.id;
 
+    let  [,setState]=useState();
+    function handleUpdate() {
+        //passing empty object will re-render the component
+        setState({});
+    }
+
+
+
+
     const handleBookmarkClick = async ()=>{
+
         const payload = {
             eventId,
             userId
@@ -66,14 +76,48 @@ function EventCard({event, bookmark}) {
         const createdBookmark = await dispatch(addBookmarks(payload, eventId));
         console.log("createdBookmark", createdBookmark);
 
-        if(createdBookmark.bookmarkState){
-            setBookmarkClassName(true)
+        // if(createdBookmark.bookmarkState){
+            setSavedBookmarkState(true)
 
-        }
-        if (typeof window !== 'undefined') {
-            localStorage.setItem("savedBookmarkState", true);
-        }
+        // }
+        // if (typeof window !== 'undefined') {
+        //     localStorage.setItem("savedBookmarkState", false);
+        // }
+        // window.location.reload();
+
+
+        console.log("handleBookmarkClick", savedBookmarkState);
     }
+
+    const handleBookmarkDelete = async ()=>{
+
+        const deleteBookmark = await dispatch(deleteBookmarks(eventId));
+
+
+        // if(deleteBookmark.bookmarkState){
+            setSavedBookmarkState(false)
+        // }
+        // if (typeof window !== 'undefined') {
+        //     localStorage.setItem("savedBookmarkState", true);
+        // }
+        // window.location.reload();
+
+        console.log("deleted");
+    }
+
+
+
+    const toggle =()=>{
+
+        if( savedBookmarkState === false ){
+            handleBookmarkClick();
+        }else if (savedBookmarkState === true){
+            handleBookmarkDelete();
+        }
+
+    }
+
+
     useEffect(()=>{
         setSavedBookmarkState (typeof window !== 'undefined' ? localStorage.getItem('savedBookmarkState') : null)
     },[])
@@ -100,9 +144,12 @@ function EventCard({event, bookmark}) {
         });
         if(response.ok){
             const isBookmarked = await response.json();
+            console.log("isBookmarked", isBookmarked);
             setSavedBookmarkState(isBookmarked);
+            console.log("savedBookmarkState",savedBookmarkState);
         }
-     }, [])
+     }, [savedBookmarkState])
+
 
     if(!sessionUser){
         return <Redirect to="/signup" />
@@ -118,8 +165,9 @@ function EventCard({event, bookmark}) {
                         <div className="date">{format(new Date(event.date), 'dd MMM yyyy', { locale: enGB })}</div>
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
-                        <div className="iconsGroup" onClick={handleBookmarkClick}  style={{display:"display"}}>
-                            <i className={bookmarkClassName === true || savedBookmarkState === true ? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
+                        <div className="iconsGroup" onClick={toggle}  style={{display:"display"}}>
+
+                            <i className={savedBookmarkState === true? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
                             {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
                             <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
                             <i className="fas fa-cart-plus" style={{display:"display"}}></i>

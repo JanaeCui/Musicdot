@@ -2,6 +2,7 @@ import {csrfFetch} from "./csrf";
 // Define Action Types as Constants
 const SET_BOOKMARKS = 'bookmarks/SET_BOOKMARKS';
 const ADD_BOOKMARKS = 'bookmarks/ADD_BOOKMARKS';
+const REMOVE_BOOKMARKS = 'bookmarks/REMOVE_BOOKMARKS';
 
 
 // Define Action Creators
@@ -12,6 +13,11 @@ const setBookmarks = (bookmarks) => ({
 
 const createBookmarks = (bookmarks) => ({
     type: ADD_BOOKMARKS,
+    bookmarks,
+})
+
+const removeBookmarks = (bookmarks) => ({
+    type: REMOVE_BOOKMARKS,
     bookmarks,
 })
 
@@ -37,7 +43,13 @@ export const addBookmarks = (payload, eventId) => async dispatch =>{
     }
 }
 
-
+export const deleteBookmarks = (eventId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/events/${eventId}/bookmarks`, {
+        method: 'DELETE'
+    });
+    const bookmarks = await res.json();
+    dispatch(removeBookmarks(bookmarks));
+};
 
 
 // Define an initial state
@@ -82,6 +94,12 @@ const bookmarksReducer = (state = initialState, action) => {
             }
         // }
         // return action.bookmarks;
+      }
+      case REMOVE_BOOKMARKS:{
+            const newState = {...state};
+            delete newState[action.bookmarks];
+            return newState;
+
       }
       default:
         return state;

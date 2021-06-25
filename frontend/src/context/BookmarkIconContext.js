@@ -17,12 +17,12 @@ export function BookmarkIconProvider({ children }) {
     return (
       <BookmarkIconContext.Provider
         value={{
-            liked,
-            setLiked,
-            bookmarkDisplay1,
-            setBookmarkDisplay1,
-            bookmarkEvent,
-            setBookmarkEvent
+            // liked,
+            // setLiked,
+            // bookmarkDisplay1,
+            // setBookmarkDisplay1,
+            // bookmarkEvent,
+            // setBookmarkEvent
         }}
       >
         {children}

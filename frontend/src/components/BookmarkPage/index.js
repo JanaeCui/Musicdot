@@ -14,7 +14,7 @@ import { getBookmarks } from '../../store/bookmarks';
 import { useSearchBar } from '../../context/SearchBarContext';
 import {useBookmarkIcon} from "../../context/BookmarkIconContext"
 
-function EventGenrePage() {
+function BookmarkPage() {
 
     const {setLiked, liked, bookmarkState} = useBookmarkIcon();
     const {searchTerm} = useSearchBar();
@@ -46,10 +46,9 @@ function EventGenrePage() {
 
 
 
-    const eventGenreGroup = ()=>{
+    const bookmarkGroup = ()=>{
 
             return bookmarks.map((bookmark) =>{
-                setLiked(bookmarkState);
 
                  return  <>
                              <EventCard event={bookmark.Event} bookmark ={bookmarks} className="eventCard" />
@@ -71,7 +70,7 @@ function EventGenrePage() {
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
 
-                {eventGenreGroup()}
+                {bookmarkGroup()}
             </div>
 
         </>
@@ -80,4 +79,4 @@ function EventGenrePage() {
 
 }
 
-export default EventGenrePage;
+export default BookmarkPage;
