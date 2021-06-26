@@ -191,6 +191,15 @@ const handleMyEventDelete = async ()=>{
 
 }
 
+const handleMyEventUpload = ()=>{
+
+    history.push("/uploadMyEvent");
+
+}
+
+const handleMyEventEdit = ()=>{
+    history.push("/edit");
+}
 
 
 useEffect(()=>{
@@ -254,8 +263,8 @@ console.log("-----final savedTicketState", savedTicketState);
                             {/* <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}></i> */}
 
                             <i onClick={handleMyEventDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i  className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleMyEventUpload} className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleMyEventEdit} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                         </div>
                     </div>
                 </div>
