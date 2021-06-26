@@ -12,6 +12,7 @@ import { addBookmarks } from '../../store/bookmarks';
 import { addTickets } from "../../store/tickets";
 import {deleteBookmarks} from "../../store/bookmarks";
 import {deleteTickets} from "../../store/tickets"
+import {deleteMyEvents} from "../../store/myEvents"
 
 import {csrfFetch} from "../../store/csrf";
 
@@ -27,6 +28,7 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
     const [display1, setDisplay1] = useState("display");
     const [display2, setDisplay2] = useState("none");
     let [counter, setCounter]=useState(0);
+    const [isDeletedEvent, setIsDeletedEvent] = useState(false)
 
 
 
@@ -159,14 +161,10 @@ const handleTicketClick = async ()=>{
     console.log("handleTicketClick", savedTicketState);
 }
 
-
-
-
-
 console.log("outside counter", counter);
 
 const handleTicketDelete = async ()=>{
-
+    console.log("handleTicketDelete")
 
     let counter2 = counter -1
 
@@ -181,17 +179,18 @@ const handleTicketDelete = async ()=>{
     console.log("deleted2");
 }
 
+//----------------------------------------------------------------------------------------------------
+//--------------------------------------myEvents click handler-----------------------------------------
+const handleMyEventDelete = async ()=>{
 
 
-// const toggle2 =()=>{
+        const deleteMyEvent= await dispatch(deleteMyEvents(eventId, userId));
+        console.log("=====deleteMyEvent", deleteMyEvent);
+        setIsDeletedEvent(deleteMyEvent.isDeletedMyEvent);
 
-//     if( savedTicketState === false ){
-//         handleTicketClick();
-//     }else if (savedTicketState === true){
-//         handleTicketDelete();
-//     }
 
-// }
+}
+
 
 
 useEffect(()=>{
@@ -229,7 +228,7 @@ console.log("-----final savedTicketState", savedTicketState);
 
     let displayStyle = "eventCard";
 
-    if (displaySolidCart && counter < 1) {
+    if (isDeletedEvent || (displaySolidCart && counter < 1)) {
         displayStyle = "eventCard2"
     }
 
@@ -254,9 +253,9 @@ console.log("-----final savedTicketState", savedTicketState);
                             <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart || displayPencil? 'none' : 'display' }}><span className="counterNumber">{counter}</span></i>
                             {/* <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}></i> */}
 
-                            <i onClick={handleTicketDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i onClick={handleTicketDelete} className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i onClick={handleTicketDelete} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleMyEventDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i  className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                         </div>
                     </div>
                 </div>

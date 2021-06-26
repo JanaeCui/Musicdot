@@ -44,12 +44,12 @@ export const addTickets = (payload, eventId) => async dispatch =>{
 }
 
 export const deleteTickets = (eventId, userId) => async (dispatch) => {
+    console.log("deleteTickets")
     const res = await csrfFetch(`/api/events/${eventId}/tickets`, {
         method: 'DELETE',
         body: JSON.stringify({userId})
     });
     const tickets = await res.json();
-    console.log("remove tickets");
     dispatch(removeTickets(tickets));
 };
 

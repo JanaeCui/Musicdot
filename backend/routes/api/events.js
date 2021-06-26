@@ -32,6 +32,48 @@ router.get('/:userId',requireAuth, asyncHandler(async (req, res) => {
     return res.json(events);
 }));
 
+
+router.delete('/:id/myevents/:userId',requireAuth, asyncHandler(async function(req, res) {
+    console.log("guschen802deleteEvent")
+    const userId = parseInt(req.params.userId, 10);
+    const eventId = parseInt(req.params.id, 10);
+    const isDeletedMyEvent = true;
+    // const currentEvent = await Event.findOne({
+    //     where: {
+    //         eventId,
+    //         hostId: userId
+    //     }
+    //   })
+
+    const ticket = await Ticket.destroy({
+
+        where: {
+            eventId,
+        }
+    })
+
+    const bookmark = await Bookmark.destroy({
+
+        where: {
+            eventId,
+        }
+    })
+    //   if(!currentBookmark) {
+        const event = await Event.destroy({
+
+            where: {
+                hostId: userId,
+                id: eventId,
+            }
+        })
+    // }
+
+
+
+    res.json({isDeletedMyEvent, event});
+})
+);
+
 router.post('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) {
 
     const eventId = parseInt(req.params.id, 10);
@@ -70,7 +112,7 @@ router.post('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) 
 );
 
 router.delete('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) {
-
+    console.log("guschen802deleteBookmarks")
     const eventId = parseInt(req.params.id, 10);
     // const userId = req.body.userId;
     // console.log("--------",loggedUserId);
@@ -82,6 +124,7 @@ router.delete('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res
     // }
     const currentBookmark = await Bookmark.findOne({
       where: {
+
           eventId,
         //   userId: userId
       }
@@ -114,6 +157,7 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
 
     let count = 1;
     const currentTicket = await Ticket.findOne({
+
       where: {
           eventId,
           userId: loggedUserId
@@ -140,7 +184,7 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
 );
 
 router.delete('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
-
+    console.log("guschen802deleteTickets")
     const eventId = parseInt(req.params.id, 10);
     const userId = req.body.userId;
     // console.log("--------",loggedUserId);
