@@ -15,7 +15,7 @@ import {deleteTickets} from "../../store/tickets"
 
 import {csrfFetch} from "../../store/csrf";
 
-function EventCard({event, displayPlusCart, displaySolidCart, bookmark}) {
+function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -245,15 +245,18 @@ console.log("-----final savedTicketState", savedTicketState);
                         <div className="capacity">Capacity: {event.capacity} people</div>
                         <div className="iconsGroup"  style={{display:"display"}}>
 
-                            <i onClick={toggle} className={savedBookmarkState === true? "fas fa-bookmark" : "far fa-bookmark"} style={{display:`display`}}></i>
+                            <i onClick={toggle} className={savedBookmarkState === true ? "fas fa-bookmark" : "far fa-bookmark"} style={{display: !displayPencil ? 'display' : 'none' }}></i>
                             {/* <i className="far fa-bookmark"  style={{display:`${bookmarkDisplay1}`}}></i>
                             <i className="fas fa-bookmark" onClick={handleBookmarkClick} style={{display:`${bookmarkDisplay2}`}}></i> */}
                             {/* <i className="fas fa-cart-plus" style={{display:"display"}}></i> */}
-                            <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: displaySolidCart ? 'display' : 'none' }}><span className="counterNumber">{counter}</span></i>
+                            <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: (displaySolidCart && !displayPencil) ? 'display' : 'none' }}><span className="counterNumber">{counter}</span></i>
                             {/* <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: displaySolidCart ? 'display' : 'none' }}></i> */}
-                            <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}><span className="counterNumber">{counter}</span></i>
+                            <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart || displayPencil? 'none' : 'display' }}><span className="counterNumber">{counter}</span></i>
                             {/* <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}></i> */}
 
+                            <i onClick={handleTicketDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleTicketDelete} className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleTicketDelete} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                         </div>
                     </div>
                 </div>

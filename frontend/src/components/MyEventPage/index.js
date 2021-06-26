@@ -71,7 +71,7 @@ function MyEventPage() {
             return events.map((event) =>{
                 console.log("map events", events);
                  return  <>
-                             <EventCard event={event} className="eventCard" />
+                             <EventCard event={event} displayPencil={true} className="eventCard" />
 
                          </>
              })
