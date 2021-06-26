@@ -23,6 +23,7 @@ const removeTickets = (tickets) => ({
 
 // Define Thunk Creators
 export const getTickets = (userId) => async (dispatch) => {
+
     const res = await csrfFetch(`/api/tickets/${userId}`);
     const tickets = await res.json();
     dispatch(setTickets(tickets));
@@ -40,7 +41,10 @@ export const addTickets = (payload, eventId) => async dispatch =>{
         const tickets = await response.json();
         dispatch(createTickets(tickets))
         return tickets;
+    } else {
+        dispatch(createTickets([]))
     }
+
 }
 
 export const deleteTickets = (eventId, userId) => async (dispatch) => {

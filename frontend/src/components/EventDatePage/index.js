@@ -54,7 +54,7 @@ function EventDatePage() {
 
         const ret = years.map((year)=>{
             let yearEvents = yearMap[year];
-            const eventsCards = yearEvents.map(event =><EventCard event={event} displayPlusCart={false}className="eventCard" />);
+            const eventsCards = yearEvents.map(event =><EventCard key={event.id} event={event} displayPlusCart={false}className="eventCard" />);
             return  <>
                         <div className="eventGenre">{year}</div>
                         {eventsCards}

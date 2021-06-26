@@ -31,6 +31,25 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
     const [isDeletedEvent, setIsDeletedEvent] = useState(false)
 
 
+useEffect(async()=>{
+
+    const response = await csrfFetch(`/api/tickets/isTicketed`,{
+     method: 'POST',
+         headers:{
+             'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({userId, eventId})
+    });
+    if(response.ok){
+        // const {isTicketed}= await response.json();
+        const counter = await response.json();
+        console.log("initial ticket count: " + counter)
+        setCounter(counter);
+        // console.log("isTicketed", isTicketed);
+        // setSavedTicketState(isTicketed);
+    }
+ }, [])
+
 
 
     useEffect(()=>{
@@ -127,9 +146,7 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
         });
         if(response.ok){
             const isBookmarked = await response.json();
-            console.log("isBookmarked", isBookmarked);
             setSavedBookmarkState(isBookmarked);
-            console.log("savedBookmarkState",savedBookmarkState);
         }
      }, [savedBookmarkState])
 
@@ -143,8 +160,8 @@ const handleTicketClick = async ()=>{
         eventId,
         userId
     }
+
     const createdTicket = await dispatch(addTickets(payload, eventId));
-    console.log("createdTicket.count", createdTicket.count);
 
         let counter1 = counter +1
         console.log(counter1);
@@ -161,10 +178,9 @@ const handleTicketClick = async ()=>{
     console.log("handleTicketClick", savedTicketState);
 }
 
-console.log("outside counter", counter);
 
 const handleTicketDelete = async ()=>{
-    console.log("handleTicketDelete")
+
 
     let counter2 = counter -1
 
@@ -174,9 +190,8 @@ const handleTicketDelete = async ()=>{
 
         const deleteTicket= await dispatch(deleteTickets(eventId, userId));
         setCounter(counter2)
-        setSavedTicketState(false)
+        // setSavedTicketState(false)
     }
-    console.log("deleted2");
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -202,32 +217,11 @@ const handleMyEventEdit = ()=>{
 }
 
 
-useEffect(()=>{
-    console.log("status");
-    setSavedTicketState (typeof window !== 'undefined' ? localStorage.getItem('savedTicketState') : null)
-},[])
+// useEffect(()=>{
+//     console.log("status");
+//     setSavedTicketState (typeof window !== 'undefined' ? localStorage.getItem('savedTicketState') : null)
+// },[])
 
-useEffect(async()=>{
-
-    const response = await csrfFetch(`/api/tickets/isTicketed`,{
-     method: 'POST',
-         headers:{
-             'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({userId, eventId})
-    });
-    if(response.ok){
-        // const {isTicketed}= await response.json();
-        const counter = await response.json();
-        setCounter(counter);
-        // console.log("isTicketed", isTicketed);
-        // setSavedTicketState(isTicketed);
-        console.log("savedTicketState",savedTicketState);
-    }
- }, [])
-
-
-console.log("-----final savedTicketState", savedTicketState);
 
 
     if(!sessionUser){

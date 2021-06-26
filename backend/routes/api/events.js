@@ -174,17 +174,16 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
         await newTicket.save()
     // }
 
-    if (typeof window !== 'undefined') {
-        localStorage.setItem("savedTicketState", false);
-        localStorage.setItem("counter", count++);
-    }
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem("savedTicketState", false);
+    //     localStorage.setItem("counter", count++);
+    // }
 
     res.json({count, currentTicket, ticketState})
 })
 );
 
 router.delete('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
-    console.log("guschen802deleteTickets")
     const eventId = parseInt(req.params.id, 10);
     const userId = req.body.userId;
     // console.log("--------",loggedUserId);

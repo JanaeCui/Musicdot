@@ -46,7 +46,7 @@ function EventGenrePage() {
 
                 if(event.category === genre){
                  return  <>
-                             <EventCard event={event} displayPlusCart={false} className="eventCard" />
+                             <EventCard key={event.id} event={event} displayPlusCart={false} className="eventCard" />
                          </>
 
                  }

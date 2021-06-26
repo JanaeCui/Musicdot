@@ -19,7 +19,6 @@ function TicketPage() {
 
     const dispatch = useDispatch();
     let tickets = useSelector((state) => Object.values(state.tickets));
-    console.log("tickets", tickets);
 
     const sessionUser = useSelector((state)=> state.session.user);
 
@@ -34,7 +33,6 @@ function TicketPage() {
 
     useEffect(() => {
         if(sessionUser){
-
             dispatch(getTickets(sessionUser.id));
 
         }
@@ -49,7 +47,6 @@ function TicketPage() {
 
     const ticketGroup = ()=>{
             let eventsMap = {};
-                console.log("########", tickets);
             // const events = tickets.Event;
             for(let ticket of tickets){
                 if(eventsMap[ticket.Event.id] === undefined){
@@ -63,7 +60,7 @@ function TicketPage() {
 
            return eventsMapArray.map((event)=>{
                 return  <>
-                          <EventCard event={event} ticket ={tickets} displaySolidCart={true} className="eventCard" />
+                          <EventCard key={event.id} event={event} ticket ={tickets} displaySolidCart={true} className="eventCard" />
                         </>
             })
 
