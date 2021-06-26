@@ -20,6 +20,7 @@ function MyEventsUploadPage() {
     };
 //-----------------------------------------------------------------------------------------------------
     const eventCategories = ["pop", "rock", "country", "hip hop", "jazz", "funk", "others"]
+    const names = ["America", "Asia", "South America", "Europe", "Africa"]
 
     const [eventTitle, setEventTitle] = useState("");
     const [eventCategory, setEventCategory] = useState(eventCategories[0]);
@@ -140,13 +141,18 @@ function MyEventsUploadPage() {
                 <div className="uploadInputGroup">
                     <label className="uploadLabel">
                         VENUE NAME
-                        <input
+                        {/* <input
                             className="uploadInput venueName"
                             type="text"
                             value={venueName}
                             onChange={(e) => setVenueName(e.target.value)}
                             required
-                        />
+                        /> */}
+                        <select className="uploadSelect2" onChange={(e) => setVenueName(e.target.value)}>
+                            {names.map(venueName =>
+                            <option key={venueName}>{venueName}</option>
+                            )}
+                        </select>
                     </label>
                 </div>
                 <div className="uploadInputGroup">
