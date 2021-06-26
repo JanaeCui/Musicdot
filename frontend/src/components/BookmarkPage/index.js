@@ -49,7 +49,7 @@ function BookmarkPage() {
             return bookmarks.map((bookmark) =>{
 
                  return  <>
-                             <EventCard key={bookmark.event.id} event={bookmark.Event} bookmark ={bookmarks} displayPlusCart={false} className="eventCard" />
+                             <EventCard event={bookmark.Event} bookmark ={bookmarks} displayPlusCart={false} className="eventCard" />
 
                          </>
              })
