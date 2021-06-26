@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import "./MyEventsUploadPage.css"
+import "./MyEventsEditPage.css"
 import CD from '../../images/CD.png'
 
 import 'date-fns';
@@ -11,12 +11,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-import {creatMyEvents} from "../../store/myEvents"
-import {Redirect, useHistory} from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-
-function MyEventsUploadPage() {
-
+function MyEventsEditPage() {
 
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
@@ -24,8 +19,6 @@ function MyEventsUploadPage() {
       setSelectedDate(date);
     };
 //-----------------------------------------------------------------------------------------------------
-    const history = useHistory();
-    const dispatch = useDispatch();
     const eventCategories = ["pop", "rock", "country", "hip hop", "jazz", "funk", "others"]
     const names = ["America", "Asia", "South America", "Europe", "Africa"]
 
@@ -45,48 +38,11 @@ function MyEventsUploadPage() {
     const [eventMusicUrl, setEventMusicUrl] = useState("");
     const [description, setDescription] = useState("");
 
-    const sessionUser = useSelector((state)=> state.session.user);
-    const userId = sessionUser.id
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const payload = {
-            eventImageUrl,
-            venueName,
-            address,
-            city,
-            state,
-            zipCode,
-            lat,
-            lng,
-            musicTitle,
-            eventMusicUrl,
-            eventCategory,
-            eventTitle,
-            selectedDate,
-            price,
-            capacity,
-            description
-        };
-
-        let createdEvent = await dispatch(creatMyEvents(payload,userId));
-        if (createdEvent) {
-          history.push(`/myEvents`);
-        }
-      };
-
-
-    if(!sessionUser){
-        return <Redirect to="/signup" />
-    }
-
-
     return(
         <section className="uploadPageContainer">
             <img className= "eventsCD" src={CD} alt="CD"/>
             <div className="FormTitle">UPLOAD EVENT</div>
-            <form onSubmit={handleSubmit}>
+            <form >
                <div className="subTitle basicInfo">BASIC INFO</div>
                <div className="uploadInputGroup">
                 <label className="uploadLabel">
@@ -172,7 +128,7 @@ function MyEventsUploadPage() {
                     <label className="uploadLabel">
                         CAPACITY
                         <input
-                        className="uploadInput uploadCapacity"
+                        className="uploadInput capacity"
                         type="number"
                         placeholder="Number"
                         min="1"
@@ -328,4 +284,4 @@ function MyEventsUploadPage() {
     )
 }
 
-export default MyEventsUploadPage;
+export default MyEventsEditPage;

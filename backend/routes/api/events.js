@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { requireAuth } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
-const { Event, Image, Venue, Bookmark, Ticket} = require('../../db/models');
+const { Music, Event, Image, Venue, Bookmark, Ticket} = require('../../db/models');
 
 router.get('/',requireAuth, asyncHandler(async (req, res) => {
 
@@ -15,6 +15,7 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
     return res.json(events);
 }));
 
+//----------------------------------------------------------------------------------------------------
 router.get('/:userId',requireAuth, asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const events = await Event.findAll(
@@ -32,9 +33,8 @@ router.get('/:userId',requireAuth, asyncHandler(async (req, res) => {
     return res.json(events);
 }));
 
-
 router.delete('/:id/myevents/:userId',requireAuth, asyncHandler(async function(req, res) {
-    console.log("guschen802deleteEvent")
+
     const userId = parseInt(req.params.userId, 10);
     const eventId = parseInt(req.params.id, 10);
     const isDeletedMyEvent = true;
@@ -73,6 +73,71 @@ router.delete('/:id/myevents/:userId',requireAuth, asyncHandler(async function(r
     res.json({isDeletedMyEvent, event});
 })
 );
+
+
+router.post('/myEventUpload/:userId',requireAuth, asyncHandler(async function(req, res) {
+
+    const userId = parseInt(req.params.userId, 10);
+    const eventImageUrl = req.body.eventImageUrl;
+    const venueName = req.body.venueName;
+    const address = req.body.address;
+    const city = req.body.city;
+    const state =req.body.state;
+    const zipCode = req.body.zipCode
+    const lat = req.body.lat
+    const lng = req.body.lng
+    const musicTitle = req.body.musicTitle
+    const eventMusicUrl = req.body.eventMusicUrl;
+    const eventCategory =req.body.eventCategory;
+    const eventTitle = req.body.eventTitle;
+    const selectedDate =req.body.selectedDate;
+    const price =req.body.price;
+    const capacity = req.body.capacity;
+    const description = req.body.description;
+
+
+
+    const image = await Image.create({
+        eventImageUrl
+    })
+
+    const venue = await Venue.create({
+
+        name: venueName,
+        address,
+        city,
+        state,
+        zipCode,
+        lat,
+        lng
+    })
+
+    const music = await Music.create({
+        title: musicTitle,
+        eventMusicUrl
+    })
+
+    const event = await Event.create({
+        hostId: userId,
+        venueId: venue.id,
+        imageId: image.id,
+        musicId: music.id,
+        category: eventCategory,
+        title: eventTitle,
+        date: selectedDate,
+        price,
+        capacity,
+        description
+
+    })
+    event.setDataValue('Image', image);
+    event.setDataValue('Music', music);
+    event.setDataValue('Venue', venue);
+    res.json(event);
+})
+);
+
+//-----------------------------------------------------------------------------------------
 
 router.post('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) {
 
@@ -147,7 +212,7 @@ router.delete('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res
 })
 );
 
-
+//----------------------------------------------------------------------------------------------
 router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
 
     const eventId = parseInt(req.params.id, 10);
