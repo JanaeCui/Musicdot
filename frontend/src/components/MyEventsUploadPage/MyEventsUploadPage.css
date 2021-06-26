@@ -1,3 +1,133 @@
-.test{
-    font-size: 200px;
+.uploadPageContainer{
+    width: 70%;
+    margin-left:10%;
+    margin-top: 10%;
 }
+
+.dateContainer{
+    width: 70%;
+}
+.FormTitle{
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.uploadButton{
+    width: 110px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6EB4EF;
+    font-size: 20px;
+    color:white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.subTitle{
+    font-size: 40px;
+    color: white;
+    padding-top: 30px;
+    margin-bottom: 50px;
+}
+
+.uploadInputGroup{
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+
+
+.uploadInput{
+    width: 600px;
+    border-radius: 5px;
+    margin-left: 30px;
+    border: none;
+    background-color: #6EB4EF;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.price{
+    width: 100px;
+    padding-left: 10px;
+}
+
+.uploadLabel{
+    color:#DB2E38;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.uploadLabelDate{
+    color:#DB2E38;
+    font-size: 30px;
+}
+.capacity{
+    width: 100px;
+    font-size: 14px;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+.address{
+    margin-left: 90px;
+}
+
+.city{
+    margin-left: 160px;
+}
+.state{
+    margin-left: 135px;
+}
+.zipCode{
+    margin-left: 87px;
+}
+
+.lat{
+    margin-left: 79px;
+    width: 100px;
+}
+.lng{
+    margin-left: 45px;
+    width: 100px;
+}
+
+.eventTitle{
+    width: 500px;
+}
+
+.uploadInputGroup2{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+.eventImageUrl{
+    margin-left:0;
+    margin-top:20px;
+    height: 30px;
+    width: 850px;
+}
+
+.uploadTextArea{
+    border: none;
+    width: 850px;
+    height: 300px;
+    border-radius: 5px;
+}
+.eventMusicUrl{
+    margin-left: 205px;
+}
+.musicTitle{
+    margin-left: 70px;
+}
+.uploadSelect{
+    border: none;
+    width:100px;
+    height: 30px;
+    margin-left: 30px;
+    border-radius: 5px;
+}
+
