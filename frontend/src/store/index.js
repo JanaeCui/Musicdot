@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import eventsReducer from "./events";
 import bookmarksReducer from "./bookmarks";
 import ticketsReducer from "./tickets";
+import myEventsReducer from "./myEvents";
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     events: eventsReducer,
     bookmarks: bookmarksReducer,
-    tickets: ticketsReducer
+    tickets: ticketsReducer,
+    myEvents: myEventsReducer
 });
 
 let enhancer;

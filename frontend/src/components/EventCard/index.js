@@ -131,7 +131,7 @@ function EventCard({event, displayPlusCart, displaySolidCart, bookmark}) {
         }
      }, [savedBookmarkState])
 
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 //--------------------------------------tickets click handler-----------------------------------------
 
 
@@ -226,7 +226,7 @@ console.log("-----final savedTicketState", savedTicketState);
         return <Redirect to="/signup" />
     }
 
-    
+
     let displayStyle = "eventCard";
 
     if (displaySolidCart && counter < 1) {
@@ -253,7 +253,7 @@ console.log("-----final savedTicketState", savedTicketState);
                             {/* <i onClick={handleTicketDelete} className= "fas fa-shopping-cart" style={{display: displaySolidCart ? 'display' : 'none' }}></i> */}
                             <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}><span className="counterNumber">{counter}</span></i>
                             {/* <i onClick={handleTicketClick} className= "fas fa-cart-plus" style={{display: displaySolidCart ? 'none' : 'display' }}></i> */}
-                            {/* <div>{counter}</div> */}
+
                         </div>
                     </div>
                 </div>

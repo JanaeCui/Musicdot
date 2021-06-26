@@ -13,9 +13,26 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
         );
 
     return res.json(events);
-  }));
+}));
 
-  router.post('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) {
+router.get('/:userId',requireAuth, asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    const events = await Event.findAll(
+        {include: [Image,Venue],
+        order: [['updatedAt', 'DESC']],
+        where: {
+            // eventId,
+            hostId: userId
+        }
+        }
+        );
+
+        console.log("--------",events);
+
+    return res.json(events);
+}));
+
+router.post('/:id/bookmarks',requireAuth, asyncHandler(async function(req, res) {
 
     const eventId = parseInt(req.params.id, 10);
     const loggedUserId = req.body.userId;

@@ -63,9 +63,8 @@ function TicketPage() {
 
            return eventsMapArray.map((event)=>{
                 return  <>
-                         <EventCard event={event} ticket ={tickets} displaySolidCart={true} className="eventCard" />
-
-                     </>
+                          <EventCard event={event} ticket ={tickets} displaySolidCart={true} className="eventCard" />
+                        </>
             })
 
 
