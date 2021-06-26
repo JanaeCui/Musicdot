@@ -24,7 +24,7 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
 
     const [price, setPrice] = useState("")
     const [savedBookmarkState,setSavedBookmarkState ] = useState(true);
-    const [savedTicketState, setSavedTicketState] = useState(true);
+    // const [savedTicketState, setSavedTicketState] = useState(true);
     const [display1, setDisplay1] = useState("display");
     const [display2, setDisplay2] = useState("none");
     let [counter, setCounter]=useState(0);
@@ -33,22 +33,27 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
 
 useEffect(async()=>{
 
-    const response = await csrfFetch(`/api/tickets/isTicketed`,{
-     method: 'POST',
-         headers:{
-             'Content-Type': 'application/json',
-         },
-         body: JSON.stringify({userId, eventId})
-    });
-    if(response.ok){
-        // const {isTicketed}= await response.json();
-        const counter = await response.json();
-        console.log("initial ticket count: " + counter)
-        setCounter(counter);
-        // console.log("isTicketed", isTicketed);
-        // setSavedTicketState(isTicketed);
-    }
- }, [])
+
+        const response = await csrfFetch(`/api/tickets/count`,{
+            method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({userId, eventId})
+           });
+           console.log("fetch count")
+           if(response.ok){
+               // const {isTicketed}= await response.json();
+               const ticketCounter = await response.json();
+               console.log("initial ticket count: " + ticketCounter)
+               setCounter(ticketCounter);
+               // console.log("isTicketed", isTicketed);
+               // setSavedTicketState(isTicketed);
+           }
+
+
+
+ }, [counter])
 
 
 
@@ -90,7 +95,7 @@ useEffect(async()=>{
         console.log("createdBookmark", createdBookmark);
 
         // if(createdBookmark.bookmarkState){
-            setSavedBookmarkState(true)
+        setSavedBookmarkState(true)
 
         // }
         // if (typeof window !== 'undefined') {
@@ -163,19 +168,19 @@ const handleTicketClick = async ()=>{
 
     const createdTicket = await dispatch(addTickets(payload, eventId));
 
-        let counter1 = counter +1
-        console.log(counter1);
-        setSavedTicketState(true)
-        setCounter(counter1)
+    let counter1 = counter +1
+    console.log(counter1);
+    // setSavedTicketState(true)
+    setCounter(counter1)
 
-        // if (typeof window !== 'undefined') {
-        //     localStorage.setItem("counter", counter++);
-        // }
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem("counter", counter++);
+    // }
 
-        // setCounter (typeof window !== 'undefined' ? localStorage.getItem('counter') : null)
+    // setCounter (typeof window !== 'undefined' ? localStorage.getItem('counter') : null)
     console.log("counter", counter);
 
-    console.log("handleTicketClick", savedTicketState);
+    // console.log("handleTicketClick", savedTicketState);
 }
 
 

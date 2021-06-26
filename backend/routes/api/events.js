@@ -153,9 +153,9 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
     const eventId = parseInt(req.params.id, 10);
     const loggedUserId = req.body.userId;
     console.log("--------",loggedUserId);
-    let ticketState = false
+    // let ticketState = false
 
-    let count = 1;
+    // let count = 1;
     const currentTicket = await Ticket.findOne({
 
       where: {
@@ -179,7 +179,7 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
     //     localStorage.setItem("counter", count++);
     // }
 
-    res.json({count, currentTicket, ticketState})
+    res.json({currentTicket})
 })
 );
 
@@ -187,7 +187,7 @@ router.delete('/:id/tickets',requireAuth, asyncHandler(async function(req, res) 
     const eventId = parseInt(req.params.id, 10);
     const userId = req.body.userId;
     // console.log("--------",loggedUserId);
-    let ticketState = false
+    // let ticketState = false
 
 
     // if (typeof window !== 'undefined') {
@@ -209,11 +209,11 @@ router.delete('/:id/tickets',requireAuth, asyncHandler(async function(req, res) 
         // res.locals.ticketId = true
     }
 
-    if (typeof window !== 'undefined') {
-        localStorage.setItem("savedTicketState", true);
-    }
+    // if (typeof window !== 'undefined') {
+    //     localStorage.setItem("savedTicketState", true);
+    // }
 
-    res.json({currentTicket, ticketState})
+    res.json({currentTicket})
 })
 );
 

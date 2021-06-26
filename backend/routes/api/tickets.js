@@ -24,19 +24,19 @@ router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
 
 
 
-router.post('/isTicketed', requireAuth, asyncHandler(async function(req, res) {
+router.post('/count', requireAuth, asyncHandler(async function(req, res) {
 
     const userId = req.body.userId;
     const eventId = req.body.eventId;
     const tickets = await Ticket.findAll({
         where: {userId, eventId}
     });
-    let isTicketed;
-    if(tickets){
-        isTicketed = true;
-    }else{
-        isTicketed = false;
-    }
+    // let isTicketed;
+    // if(tickets){
+    //     isTicketed = true;
+    // }else{
+    //     isTicketed = false;
+    // }
 
     const counter = tickets.length;
     return res.json(counter);
