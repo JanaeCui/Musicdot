@@ -324,6 +324,8 @@ function MyEventsUploadPage() {
                     <button className="uploadButton" type="submit">SUBMIT</button>
                 </div>
             </form>
+            
+
       </section>
     )
 }

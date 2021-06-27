@@ -16,7 +16,7 @@ import TicketPage from "./components/TicketPage";
 import MyEventPage from "./components/MyEventPage"
 import MyEventsUploadPage from "./components/MyEventsUploadPage"
 import MyEventsEditPage from "./components/MyEventsEditPage"
-
+import EventDetailPage from "./components/EventDetailPage"
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -63,6 +63,9 @@ function App() {
                 </Route>
                 <Route path="/editMyEvent">
                   <MyEventsEditPage />
+                </Route>
+                <Route path="/eventDetail">
+                  <EventDetailPage />
                 </Route>
 
               </Switch>

@@ -221,7 +221,6 @@ const handleMyEventUpload = ()=>{
 
 const handleMyEventEdit = ()=>{
 
-    setEventIdForEdit(event);
     if(window !== 'undefined'){
         console.log("Set event: " + JSON.stringify(event))
         localStorage.setItem('eventForEdit', JSON.stringify(event))
@@ -230,6 +229,16 @@ const handleMyEventEdit = ()=>{
     history.push("/editMyEvent");
 }
 
+
+const handleMyEventDetail = ()=>{
+
+    if(window !== 'undefined'){
+
+        localStorage.setItem('eventForDetail', JSON.stringify(event))
+    }
+
+    history.push("/editMyEvent");
+}
 
 
 
@@ -251,7 +260,7 @@ const handleMyEventEdit = ()=>{
                 <img className= "eventCardPic" src={event.Image.eventImageUrl} alt="eventCardPic" />
                 <div className={contentCard}>
                     <div className="content">
-                        <div className="title">{event.title}</div>
+                        <a href="/eventDetail" onClick={handleMyEventDetail} className="title">{event.title}</a>
                         <div className="date">{format(new Date(event.date), 'dd MMM yyyy', { locale: enGB })}</div>
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
@@ -268,7 +277,7 @@ const handleMyEventEdit = ()=>{
 
                             <i onClick={handleMyEventDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                             <i onClick={handleMyEventUpload} className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i onClick={handleMyEventEdit} id = {eventIdForEdit} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleMyEventEdit}  className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                         </div>
                     </div>
                 </div>

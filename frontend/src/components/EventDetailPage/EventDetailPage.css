@@ -1,0 +1,78 @@
+.eventDetailBackgroundPic{
+    width: 2151px;
+    height: 1080px;
+    opacity: 60%;
+    position:relative;
+    z-index: -20000;
+}
+.eventDetailCD{
+    position: absolute;
+    top:200px;
+    left: 40%;
+    width: 600px;
+    height: 600px;
+
+}
+
+.eventDetailCoverPic{
+    position: absolute;
+    top:200px;
+    left: 30%;
+    width: 600px;
+    height: 600px;
+    /* opacity: 90%; */
+    background: #777;
+     -webkit-box-shadow: 0 15px 10px
+}
+
+.eventDetailCoverPic:hover{
+    position: absolute;
+    top:200px;
+    left: 30%;
+    width: 600px;
+    height: 600px;
+    /* opacity: 90%; */
+    background: #777;
+    -webkit-box-shadow: 0 35px 20px #777;
+    -moz-box-shadow: 0 35px 20px #777;
+    box-shadow: 0 35px 20px #777;
+
+}
+
+.musicTrack{
+    position: absolute;
+    top:700px;
+    left: 32%;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+
+}
+
+.musicTrack:hover{
+    position: absolute;
+    top:700px;
+    left: 32%;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px
+
+
+}
+.eventDetailMiddleBackground{
+    width: 2151px;
+    height: 150px;
+    background-color: white;
+    padding: 50px;
+}
+.eventDetailBottomBackground{
+    width: 1700px;
+    height: 150px;
+    padding: 70px 50px;
+    overflow: scroll;
+}
+
+.eventDetailDescription{
+    margin-top: 50px;
+    color: white;
+    font-size: 20px;
+}
