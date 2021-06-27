@@ -237,7 +237,7 @@ const handleMyEventDetail = ()=>{
         localStorage.setItem('eventForDetail', JSON.stringify(event))
     }
 
-    history.push("/editMyEvent");
+    // history.push("/editMyEvent");
 }
 
 
