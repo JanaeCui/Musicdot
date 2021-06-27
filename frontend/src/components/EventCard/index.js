@@ -237,7 +237,7 @@ const handleMyEventDetail = ()=>{
         localStorage.setItem('eventForDetail', JSON.stringify(event))
     }
 
-    // history.push("/editMyEvent");
+    history.push("/eventDetail");
 }
 
 
@@ -260,7 +260,7 @@ const handleMyEventDetail = ()=>{
                 <img className= "eventCardPic" src={event.Image.eventImageUrl} alt="eventCardPic" />
                 <div className={contentCard}>
                     <div className="content">
-                        <a href="/eventDetail" onClick={handleMyEventDetail} className="title">{event.title}</a>
+                        <a  onClick={handleMyEventDetail} className="title">{event.title}</a>
                         <div className="date">{format(new Date(event.date), 'dd MMM yyyy', { locale: enGB })}</div>
                         <div className={price}>Starts at ${event.price}</div>
                         <div className="capacity">Capacity: {event.capacity} people</div>
