@@ -222,13 +222,14 @@ const handleMyEventUpload = ()=>{
 const handleMyEventEdit = ()=>{
 
     setEventIdForEdit(event);
+    if(window !== 'undefined'){
+        console.log("Set event: " + JSON.stringify(event))
+        localStorage.setItem('eventForEdit', JSON.stringify(event))
+    }
+
     history.push("/editMyEvent");
 }
 
-
-// useEffect(()=>{
-//     setEventIdForEdit(event);
-// },[event])
 
 
 

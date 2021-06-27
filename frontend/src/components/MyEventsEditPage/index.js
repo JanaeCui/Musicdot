@@ -27,8 +27,10 @@ function MyEventsEditPage() {
       setSelectedDate(date);
     };
 //-----------------------------------------------------------------------------------------------------
-    const {eventIdForEdit, setEventIdForEdit} = useEditPage()
-    console.log("eventIdForEdit-------", eventIdForEdit);
+
+    const eventForEdit = JSON.parse(localStorage.getItem('eventForEdit'))
+    // console.log("____________localStorage", eventForEdit);
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -43,25 +45,23 @@ function MyEventsEditPage() {
 
 
 
-      const [eventTitle, setEventTitle] = useState(eventIdForEdit.title);
-      const [eventCategory, setEventCategory] = useState(eventIdForEdit.category);
-      const [price, setPrice] = useState(eventIdForEdit.price);
-      const [capacity,setCapacity] = useState(eventIdForEdit.capacity);
-      const [venueName, setVenueName] = useState(eventIdForEdit.Venue.name);
-      const [address, setAddress] = useState(eventIdForEdit.Venue.address);
-      const [city, setCity]= useState(eventIdForEdit.Venue.city);
-      const [state, setState] = useState(eventIdForEdit.Venue.state);
-      const [zipCode, setZipCode] = useState(eventIdForEdit.Venue.zipCode)
-      const [lat, setLat] = useState(eventIdForEdit.Venue.lat);
-      const [lng, setLng] = useState(eventIdForEdit.Venue.lng);
-      const [eventImageUrl, setEventImageUrl] = useState(eventIdForEdit.Image.eventImageUrl);
-      const [musicTitle, setMusicTitle] = useState(eventIdForEdit.Music.title);
-      const [eventMusicUrl, setEventMusicUrl] = useState(eventIdForEdit.Music.eventMusicUrl);
-      const [description, setDescription] = useState(eventIdForEdit.description);
+      const [eventTitle, setEventTitle] = useState(eventForEdit.title);
+      const [eventCategory, setEventCategory] = useState(eventForEdit.category);
+      const [price, setPrice] = useState(eventForEdit.price);
+      const [capacity,setCapacity] = useState(eventForEdit.capacity);
+      const [venueName, setVenueName] = useState(eventForEdit.Venue.name);
+      const [address, setAddress] = useState(eventForEdit.Venue.address);
+      const [city, setCity]= useState(eventForEdit.Venue.city);
+      const [state, setState] = useState(eventForEdit.Venue.state);
+      const [zipCode, setZipCode] = useState(eventForEdit.Venue.zipCode)
+      const [lat, setLat] = useState(eventForEdit.Venue.lat);
+      const [lng, setLng] = useState(eventForEdit.Venue.lng);
+      const [eventImageUrl, setEventImageUrl] = useState(eventForEdit.Image.eventImageUrl);
+      const [musicTitle, setMusicTitle] = useState(eventForEdit.Music.title);
+      const [eventMusicUrl, setEventMusicUrl] = useState(eventForEdit.Music.eventMusicUrl);
+      const [description, setDescription] = useState(eventForEdit.description);
 
-      useEffect(()=>{
-        setEventIdForEdit(eventIdForEdit);
-      },[eventIdForEdit])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -85,7 +85,7 @@ function MyEventsEditPage() {
             description
         };
 
-        let editEvent = await dispatch(editMyEvents(payload, eventIdForEdit.id, userId));
+        let editEvent = await dispatch(editMyEvents(payload, eventForEdit.id, userId));
         if (editEvent) {
           history.push(`/myEvents`);
         }
