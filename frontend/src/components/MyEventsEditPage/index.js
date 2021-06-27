@@ -11,38 +11,96 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
+import { useEffect} from 'react';
+import {editMyEvents} from "../../store/myEvents"
+import {Redirect, useHistory} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import {useEditPage} from "../../context/EditPageContext"
+import { getEvents } from '../../store/events';
+
 function MyEventsEditPage() {
 
+//-------------------------------------------------------------------------------------------------------
     const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
     const handleDateChange = (date) => {
       setSelectedDate(date);
     };
 //-----------------------------------------------------------------------------------------------------
+    const {eventIdForEdit, setEventIdForEdit} = useEditPage()
+    console.log("eventIdForEdit-------", eventIdForEdit);
+
+    const history = useHistory();
+    const dispatch = useDispatch();
     const eventCategories = ["pop", "rock", "country", "hip hop", "jazz", "funk", "others"]
     const names = ["America", "Asia", "South America", "Europe", "Africa"]
 
-    const [eventTitle, setEventTitle] = useState("");
-    const [eventCategory, setEventCategory] = useState(eventCategories[0]);
-    const [price, setPrice] = useState(0);
-    const [capacity,setCapacity] = useState(0);
-    const [venueName, setVenueName] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity]= useState("");
-    const [state, setState] = useState("");
-    const [zipCode, setZipCode] = useState("")
-    const [lat, setLat] = useState(0.00);
-    const [lng, setLng] = useState(0.00);
-    const [eventImageUrl, setEventImageUrl] = useState("");
-    const [musicTitle, setMusicTitle] = useState("");
-    const [eventMusicUrl, setEventMusicUrl] = useState("");
-    const [description, setDescription] = useState("");
+
+    const sessionUser = useSelector((state)=> state.session.user);
+
+
+    const userId = sessionUser.id
+
+
+
+      const [eventTitle, setEventTitle] = useState(eventIdForEdit.title);
+      const [eventCategory, setEventCategory] = useState(eventIdForEdit.category);
+      const [price, setPrice] = useState(eventIdForEdit.price);
+      const [capacity,setCapacity] = useState(eventIdForEdit.capacity);
+      const [venueName, setVenueName] = useState(eventIdForEdit.Venue.name);
+      const [address, setAddress] = useState(eventIdForEdit.Venue.address);
+      const [city, setCity]= useState(eventIdForEdit.Venue.city);
+      const [state, setState] = useState(eventIdForEdit.Venue.state);
+      const [zipCode, setZipCode] = useState(eventIdForEdit.Venue.zipCode)
+      const [lat, setLat] = useState(eventIdForEdit.Venue.lat);
+      const [lng, setLng] = useState(eventIdForEdit.Venue.lng);
+      const [eventImageUrl, setEventImageUrl] = useState(eventIdForEdit.Image.eventImageUrl);
+      const [musicTitle, setMusicTitle] = useState(eventIdForEdit.Music.title);
+      const [eventMusicUrl, setEventMusicUrl] = useState(eventIdForEdit.Music.eventMusicUrl);
+      const [description, setDescription] = useState(eventIdForEdit.description);
+
+      useEffect(()=>{
+        setEventIdForEdit(eventIdForEdit);
+      },[eventIdForEdit])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            eventImageUrl,
+            venueName,
+            address,
+            city,
+            state,
+            zipCode,
+            lat,
+            lng,
+            musicTitle,
+            eventMusicUrl,
+            eventCategory,
+            eventTitle,
+            selectedDate,
+            price,
+            capacity,
+            description
+        };
+
+        let editEvent = await dispatch(editMyEvents(payload, eventIdForEdit.id, userId));
+        if (editEvent) {
+          history.push(`/myEvents`);
+        }
+      };
+
+
+    if(!sessionUser){
+        return <Redirect to="/signup" />
+    }
 
     return(
         <section className="uploadPageContainer">
             <img className= "eventsCD" src={CD} alt="CD"/>
             <div className="FormTitle">UPLOAD EVENT</div>
-            <form >
+            <form onSubmit={handleSubmit}>
                <div className="subTitle basicInfo">BASIC INFO</div>
                <div className="uploadInputGroup">
                 <label className="uploadLabel">
@@ -128,7 +186,7 @@ function MyEventsEditPage() {
                     <label className="uploadLabel">
                         CAPACITY
                         <input
-                        className="uploadInput capacity"
+                        className="uploadInput uploadCapacity"
                         type="number"
                         placeholder="Number"
                         min="1"

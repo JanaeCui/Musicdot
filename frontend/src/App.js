@@ -15,6 +15,7 @@ import BookmarkPage from "./components/BookmarkPage";
 import TicketPage from "./components/TicketPage";
 import MyEventPage from "./components/MyEventPage"
 import MyEventsUploadPage from "./components/MyEventsUploadPage"
+import MyEventsEditPage from "./components/MyEventsEditPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,9 @@ function App() {
                 </Route>
                 <Route path="/uploadMyEvent">
                   <MyEventsUploadPage />
+                </Route>
+                <Route path="/editMyEvent">
+                  <MyEventsEditPage />
                 </Route>
 
               </Switch>

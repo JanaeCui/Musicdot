@@ -7,7 +7,7 @@ const { Music, Event, Image, Venue, Bookmark, Ticket} = require('../../db/models
 router.get('/',requireAuth, asyncHandler(async (req, res) => {
 
     const events = await Event.findAll(
-        {include: [Image,Venue],
+        {include: [Image,Venue, Music],
         order: [['updatedAt', 'DESC']]
         }
         );
@@ -19,7 +19,7 @@ router.get('/',requireAuth, asyncHandler(async (req, res) => {
 router.get('/:userId',requireAuth, asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId, 10);
     const events = await Event.findAll(
-        {include: [Image,Venue],
+        {include: [Image,Venue, Music],
         order: [['updatedAt', 'DESC']],
         where: {
             // eventId,
@@ -133,6 +133,88 @@ router.post('/myEventUpload/:userId',requireAuth, asyncHandler(async function(re
     event.setDataValue('Image', image);
     event.setDataValue('Music', music);
     event.setDataValue('Venue', venue);
+    res.json(event);
+})
+);
+
+
+
+router.put('/:id/myEventEdit/:userId',requireAuth, asyncHandler(async function(req, res) {
+    const eventId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.params.userId, 10);
+    const eventImageUrl = req.body.eventImageUrl;
+    const venueName = req.body.venueName;
+    const address = req.body.address;
+    const city = req.body.city;
+    const state =req.body.state;
+    const zipCode = req.body.zipCode
+    const lat = req.body.lat
+    const lng = req.body.lng
+    const musicTitle = req.body.musicTitle
+    const eventMusicUrl = req.body.eventMusicUrl;
+    const eventCategory =req.body.eventCategory;
+    const eventTitle = req.body.eventTitle;
+    const selectedDate =req.body.selectedDate;
+    const price =req.body.price;
+    const capacity = req.body.capacity;
+    const description = req.body.description;
+
+
+
+    const image = await Image.update({
+        eventImageUrl
+    },{where:{ eventImageUrl}})
+
+    const venue = await Venue.update({
+
+        name: venueName,
+        address,
+        city,
+        state,
+        zipCode,
+        lat,
+        lng
+    },{where:{
+        name: venueName,
+        address,
+        city,
+        state,
+        zipCode,
+        lat,
+        lng
+    }})
+
+    const music = await Music.update({
+        title: musicTitle,
+        eventMusicUrl
+    },{where:{title: musicTitle,
+        eventMusicUrl} })
+
+    await Event.update({
+        hostId: userId,
+        venueId: venue.id,
+        imageId: image.id,
+        musicId: music.id,
+        category: eventCategory,
+        title: eventTitle,
+        date: selectedDate,
+        price,
+        capacity,
+        description
+
+    }, { where: {id: eventId} } )
+
+    const event = await Event.findOne({
+        where: {
+            id: eventId,
+            hostId: userId,
+        },
+        include:[
+            Image,
+            Music,
+            Venue
+        ],
+    })
     res.json(event);
 })
 );

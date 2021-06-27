@@ -4,6 +4,7 @@ import {csrfFetch} from "./csrf";
 const SET_MYEVENTS = 'myEvents/SET_MYEVENTS';
 const REMOVE_MYEVENTS = 'myEvents/REMOVE_MYEVENTS';
 const ADD_MYEVENTS = 'myEvents/ADD_MYEVENTS';
+const UPDATE_MYEVENTS = 'myEvents/UPDATE_MYEVENTS';
 
 // Define Action Creators
 const setMyEvents = (events) => ({
@@ -19,6 +20,11 @@ const removeMyEvents = (events) => ({
 const addMyEvents = (events) =>({
     type: ADD_MYEVENTS,
     events,
+})
+
+const updateMyEvents = (events) =>({
+  type: UPDATE_MYEVENTS,
+  events
 })
 
 export const getMyEvents = (userId) => async (dispatch) => {
@@ -60,6 +66,26 @@ export const creatMyEvents = (payload,userId) => async (dispatch) =>{
 
   }
 
+
+  export const editMyEvents = (payload, eventId, userId) => async (dispatch) =>{
+
+    const response = await csrfFetch(`/api/events/${eventId}/myEventEdit/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if(response.ok){
+      const events = await response.json();
+      dispatch(updateMyEvents(events))
+      return events;
+    } else {
+        console.log("editMyEvents no respond")
+    }
+
+  }
+
 // Define an initial state
 const initialState = {
     // list: [],
@@ -81,17 +107,12 @@ const myEventsReducer = (state = initialState, action) => {
               ...state,
               [action.events.id]: action.events,
           }
-
-        // console.log("action.events++++++++++", action.events.event);
-        // const newState = {
-        //     ...state,
-        //     ...action.events,
-        //     ...action.events.event,
-        // }
-        // console.log("newState++++++++++", newState);
-        // return newState;
-
-
+      }
+      case UPDATE_MYEVENTS:{
+          return {
+            ...state,
+            [action.events.id]: action.events,
+        }
       }
       default:
         return state;

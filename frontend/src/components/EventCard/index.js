@@ -13,12 +13,14 @@ import { addTickets } from "../../store/tickets";
 import {deleteBookmarks} from "../../store/bookmarks";
 import {deleteTickets} from "../../store/tickets"
 import {deleteMyEvents} from "../../store/myEvents"
+import {useEditPage} from "../../context/EditPageContext"
 
 import {csrfFetch} from "../../store/csrf";
 
 function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const {eventIdForEdit, setEventIdForEdit} = useEditPage()
 
     const [contentCard, setContentCard] = useState("")
 
@@ -218,14 +220,16 @@ const handleMyEventUpload = ()=>{
 }
 
 const handleMyEventEdit = ()=>{
-    history.push("/edit");
+
+    setEventIdForEdit(event);
+    history.push("/editMyEvent");
 }
 
 
 // useEffect(()=>{
-//     console.log("status");
-//     setSavedTicketState (typeof window !== 'undefined' ? localStorage.getItem('savedTicketState') : null)
-// },[])
+//     setEventIdForEdit(event);
+// },[event])
+
 
 
 
@@ -263,7 +267,7 @@ const handleMyEventEdit = ()=>{
 
                             <i onClick={handleMyEventDelete} className= "fas fa-trash-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                             <i onClick={handleMyEventUpload} className= "fas fa-upload" style={{display: displayPencil ? 'display' : 'none' }}></i>
-                            <i onClick={handleMyEventEdit} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
+                            <i onClick={handleMyEventEdit} id = {eventIdForEdit} className= "fas fa-pencil-alt" style={{display: displayPencil ? 'display' : 'none' }}></i>
                         </div>
                     </div>
                 </div>

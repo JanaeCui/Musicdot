@@ -8,7 +8,7 @@ import App from "./App";
 import { ModalProvider } from "./context/Modal";
 import {HomepageAnimationProvider} from "./context/HomepageAnimationContext"
 import { SearchBarProvider } from "./context/SearchBarContext";
-import {BookmarkIconProvider} from "./context/BookmarkIconContext"
+import {EditPageProvider} from "./context/EditPageContext"
 
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
@@ -30,13 +30,13 @@ function Root() {
     <Provider store={store}>
       <HomepageAnimationProvider>
         <SearchBarProvider>
-          <BookmarkIconProvider>
+          <EditPageProvider>
             <ModalProvider>
               <BrowserRouter>
                 <App />
               </BrowserRouter>
             </ModalProvider>
-          </BookmarkIconProvider>
+          </EditPageProvider>
         </SearchBarProvider>
       </HomepageAnimationProvider>
     </Provider>

@@ -65,25 +65,56 @@
     color:#DB2E38;
     font-size: 30px;
 }
-.capacity{
+.uploadCapacity{
     width: 100px;
     font-size: 14px;
     padding-left: 10px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
 }
 
 .address{
     margin-left: 90px;
 }
 
+.address:-webkit-autofill,
+.address:-webkit-autofill:hover,
+.address:-webkit-autofill:focus,
+.address:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #6EB4EF inset;
+}
+
+
+
 .city{
     margin-left: 160px;
 }
+
+.city:-webkit-autofill,
+.city:-webkit-autofill:hover,
+.city:-webkit-autofill:focus,
+.city:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #6EB4EF inset;
+}
+
 .state{
     margin-left: 135px;
 }
+
+.state:-webkit-autofill,
+.state:-webkit-autofill:hover,
+.state:-webkit-autofill:focus,
+.state:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #6EB4EF inset;
+}
 .zipCode{
     margin-left: 87px;
+}
+
+.zipCode:-webkit-autofill,
+.zipCode:-webkit-autofill:hover,
+.zipCode:-webkit-autofill:focus,
+.zipCode:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #6EB4EF inset;
 }
 
 .lat{

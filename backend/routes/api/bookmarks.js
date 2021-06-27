@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { requireAuth } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
-const { Event, User,Image, Bookmark} = require('../../db/models');
+const { Event, Music, Venue, User,Image, Bookmark} = require('../../db/models');
 
 router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
 
@@ -11,7 +11,7 @@ router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
     const bookmarks = await Bookmark.findAll(
         {include: [{
             model: Event,
-            include: [Image]
+            include: [Image, Music, Venue]
         }, User],
         order: [['updatedAt', 'DESC']],
         where: {userId}

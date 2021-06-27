@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const { requireAuth } = require('../../utils/auth');
 const asyncHandler = require('express-async-handler');
-const { Event, User,Image, Ticket} = require('../../db/models');
+const { Event,Music, Venue, User,Image, Ticket} = require('../../db/models');
 
 router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
 
@@ -12,7 +12,7 @@ router.get('/:id',requireAuth, asyncHandler(async (req, res) => {
     const tickets = await Ticket.findAll(
         {include: [{
             model: Event,
-            include: [Image]
+            include: [Image, Music, Venue]
         }, User],
         order: [['updatedAt', 'DESC']],
         where: {userId}
