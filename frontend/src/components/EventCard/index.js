@@ -33,31 +33,51 @@ function EventCard({event, displayPencil, displaySolidCart, bookmark}) {
     const [isDeletedEvent, setIsDeletedEvent] = useState(false)
 
 
-useEffect(async()=>{
+// useEffect(async()=>{
 
 
-        const response = await csrfFetch(`/api/tickets/count`,{
-            method: 'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({userId, eventId})
-           });
-           console.log("fetch count")
-           if(response.ok){
-               // const {isTicketed}= await response.json();
-               const ticketCounter = await response.json();
-               console.log("initial ticket count: " + ticketCounter)
-               setCounter(ticketCounter);
-               // console.log("isTicketed", isTicketed);
-               // setSavedTicketState(isTicketed);
-           }
+//         const response = await csrfFetch(`/api/tickets/count`,{
+//             method: 'POST',
+//                 headers:{
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify({userId, eventId})
+//            });
+//            console.log("fetch count")
+//            if(response.ok){
+//                // const {isTicketed}= await response.json();
+//                const ticketCounter = await response.json();
+//                console.log("initial ticket count: " + ticketCounter)
+//                setCounter(ticketCounter);
+//                // console.log("isTicketed", isTicketed);
+//                // setSavedTicketState(isTicketed);
+//            }
 
 
 
- }, [counter])
+//  }, [counter])
 
-
+useEffect(() => {
+    const func = async () => {
+      const response = await csrfFetch(`/api/tickets/count`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, eventId })
+      });
+      console.log("fetch count")
+      if (response.ok) {
+        // const {isTicketed}= await response.json();
+        const ticketCounter = await response.json();
+        console.log("initial ticket count: " + ticketCounter)
+        setCounter(ticketCounter);
+        // console.log("isTicketed", isTicketed);
+        // setSavedTicketState(isTicketed);
+      }
+    }
+    func();
+  }, [counter])
 
     useEffect(()=>{
         if(event.id % 2 === 0){

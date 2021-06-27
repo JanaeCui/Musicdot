@@ -37,9 +37,20 @@ export const addTickets = (payload, eventId) => async dispatch =>{
         },
         body: JSON.stringify(payload)
     });
+    // if(response.ok){
+    //     const tickets = await response.json();
+    //     dispatch(createTickets(tickets))
+    //     return tickets;
+    // } else {
+    //     dispatch(createTickets([]))
+    // }
     if(response.ok){
         const tickets = await response.json();
-        dispatch(createTickets(tickets))
+        if (tickets.currentTicket) {
+            dispatch(createTickets(tickets.currentTicket));
+        } else {
+            dispatch(createTickets(tickets.newTicket));
+        }
         return tickets;
     } else {
         dispatch(createTickets([]))
@@ -68,7 +79,11 @@ const initialState = {
 const ticketsReducer = (state = initialState, action) => {
     switch (action.type) {
       case SET_TICKETS:
-        return action.tickets;
+        // return action.tickets;
+        return {
+            ...state,
+            ...Object.fromEntries(action.tickets.map((ticket) => [ticket.id, ticket])),
+        }
       case ADD_TICKETS:{
             return {
                 ...state,

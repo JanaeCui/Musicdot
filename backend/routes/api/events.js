@@ -326,7 +326,7 @@ router.post('/:id/tickets',requireAuth, asyncHandler(async function(req, res) {
     //     localStorage.setItem("counter", count++);
     // }
 
-    res.json({currentTicket})
+    res.json({currentTicket, newTicket})
 })
 );
 
