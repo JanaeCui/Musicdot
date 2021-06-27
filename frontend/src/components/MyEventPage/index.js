@@ -7,13 +7,14 @@ import SearchBar from "../../components/SearchBar"
 
 import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 
 import { getMyEvents } from '../../store/myEvents';
 
 import { useSearchBar } from '../../context/SearchBarContext';
 
 function MyEventPage() {
+    const history = useHistory();
 
     const {searchTerm} = useSearchBar();
 
@@ -30,6 +31,12 @@ function MyEventPage() {
     }
 
     events = dynamicSearch();
+
+    const handleMyEventUpload = ()=>{
+
+        history.push("/uploadMyEvent");
+
+    }
 
     useEffect(() => {
         if(sessionUser){
@@ -86,6 +93,7 @@ function MyEventPage() {
 
                     <div className="eventGenreTitle">
                         MY EVENTS
+                        <i onClick={handleMyEventUpload} className= "fas fa-upload" style={{display:'display'}}></i>
                     </div>
                     <SearchBar className="searchBarInEventsPage"/>
                 </div>
